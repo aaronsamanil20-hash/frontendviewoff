@@ -1,0 +1,203 @@
+﻿/* FORESIGHTX — Quiet Ledger design tokens */
+
+:root {
+  /* Foundations */
+  --bg-app: #080a0c;
+  --bg-sidebar: #0a0d10;
+  --surface-1: #101417;
+  --surface-2: #171c20;
+  --surface-3: #20272c;
+
+  /* Compatibility aliases */
+  --bg: var(--bg-app);
+  --sidebar: var(--bg-sidebar);
+  --panel: var(--surface-1);
+  --panel-raised: var(--surface-2);
+
+  /* Typography */
+  --font-ui: 'Plus Jakarta Sans', sans-serif;
+  --font-editorial: 'Cormorant Garamond', serif;
+  --font-body: var(--font-ui);
+  --font-display: var(--font-ui);
+  --font-component-display: var(--font-editorial);
+
+  --type-page-title: 48px;
+  --type-page-subtitle: 14px;
+  --type-section-heading: 20px;
+  --type-panel-label: 12px;
+  --type-eyebrow: 12px;
+  --type-body: 14px;
+  --type-table-cell: 13px;
+  --type-table-header: 12px;
+  --type-metric: 36px;
+  --type-metric-compact: 26px;
+  --type-metadata: 12px;
+  --type-button: 14px;
+  --type-badge: 12px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --line-tight: 1.15;
+  --line-normal: 1.5;
+  --line-relaxed: 1.65;
+
+  --eyebrow-size: 12px;
+  --eyebrow-weight: 600;
+  --eyebrow-tracking: 0.12em;
+
+  /* Text contrast */
+  --text-primary: #f4f6f8;
+  --text-secondary: #c4cdd2;
+  --text-muted: #a5b0b6;
+
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --subtle: var(--text-muted);
+
+  /* Accent */
+  --accent-silver: #dce2e7;
+  --accent-cyan: #a8cad4;
+  --cyan: var(--accent-cyan);
+
+  /* Silver primary button only */
+  --cta-metallic: linear-gradient(180deg, #f4f6f8 0%, #cbd3d9 100%);
+  --cta-metallic-hover: linear-gradient(180deg, #ffffff 0%, #dce2e7 100%);
+  --cta-metallic-active: linear-gradient(180deg, #cbd3d9 0%, #b9c3ca 100%);
+
+  /* Status colours — apply to marks, not status containers */
+  --status-warning: #d5b17e;
+  --status-critical: #d99498;
+  --status-positive: #a5c4af;
+  --status-information: #a8cad4;
+
+  --amber: var(--status-warning);
+  --red: var(--status-critical);
+  --green: var(--status-positive);
+  --blue: var(--status-information);
+
+  /* Retained compatibility names; no tinted status panels */
+  --status-warning-bg: transparent;
+  --status-critical-bg: transparent;
+  --status-positive-bg: transparent;
+  --status-information-bg: transparent;
+
+  /* Unknown values */
+  --surface-unknown: transparent;
+  --text-unknown: #c4cdd2;
+  --border-unknown: #a5b0b6;
+
+  /* Rules */
+  --border-hairline: rgba(244, 246, 248, 0.2);
+  --border-strong: rgba(244, 246, 248, 0.3);
+  --border-focus: var(--accent-cyan);
+  --metric-divider: 1px solid var(--border-hairline);
+
+  /* Shape */
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-button: 6px;
+  --radius-panel: 0px;
+  --radius-input: 6px;
+
+  /* Approved spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Legacy aliases mapped to the approved scale */
+  --space-8: var(--space-6);
+  --space-9: var(--space-6);
+  --space-10: var(--space-7);
+  --space-11: var(--space-7);
+  --space-12: var(--space-7);
+  --space-13: var(--space-7);
+
+  /* Page layout */
+  --page-padding-x: 32px;
+  --page-padding-top: 32px;
+  --page-padding-bottom: 48px;
+  --content-max-width: 1360px;
+
+  --panel-padding-compact: 12px;
+  --panel-padding-default: 16px;
+  --panel-padding-feature: 24px;
+
+  --section-gap: 32px;
+  --grid-gap: 16px;
+
+  /* Numeric alignment */
+  --numeric-spacing: -0.02em;
+  --numeric-style: tabular-nums;
+
+  /* Overlays */
+  --overlay-scrim: rgba(5, 6, 7, 0.76);
+
+  /* Shadows disabled */
+  --shadow-float: none;
+
+  /* Motion: user-caused state changes only */
+  --dur-fast: 180ms;
+  --dur-base: 180ms;
+  --dur-slow: 180ms;
+  --dur-page: 180ms;
+
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layer order */
+  --z-base: 0;
+  --z-content: 1;
+  --z-sidebar: 10;
+  --z-header: 20;
+  --z-dropdown: 30;
+  --z-overlay: 40;
+  --z-drawer: 50;
+  --z-modal: 60;
+  --z-tooltip: 70;
+
+  /* Tables */
+  --table-row-height-compact: 40px;
+  --table-row-height: 48px;
+
+  /* Focus */
+  --focus-ring: 0 0 0 2px var(--accent-cyan);
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  :root {
+    --page-padding-x: 24px;
+    --page-padding-top: 24px;
+    --page-padding-bottom: 32px;
+    --panel-padding-default: 16px;
+    --section-gap: 24px;
+    --type-page-title: 42px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --page-padding-x: 16px;
+    --page-padding-top: 16px;
+    --page-padding-bottom: 24px;
+    --type-page-title: 36px;
+    --type-section-heading: 18px;
+    --type-metric: 30px;
+    --type-metric-compact: 24px;
+    --panel-padding-compact: 12px;
+    --panel-padding-default: 16px;
+    --panel-padding-feature: 24px;
+    --section-gap: 24px;
+    --grid-gap: 12px;
+  }
+}

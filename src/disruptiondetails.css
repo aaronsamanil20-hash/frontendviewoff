@@ -1,0 +1,347 @@
+/* FORESIGHTX — Disruption Details
+   Quiet Ledger presentation
+*/
+
+.incident-page {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 8px;
+  color: var(--text-primary);
+  background: var(--bg-app);
+}
+
+/* Page heading */
+
+.incident-page-heading {
+  min-width: 0;
+}
+
+.incident-stage-label {
+  margin: 0 0 12px;
+  color: var(--accent-cyan);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.incident-page-heading h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-editorial);
+  font-size: clamp(40px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.incident-finding {
+  max-width: 850px;
+  margin: 12px 0 0;
+  color: var(--text-secondary);
+  font-family: var(--font-editorial);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+/* Two-column ruled overview */
+
+.incident-overview {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+}
+
+.incident-column {
+  min-width: 0;
+}
+
+.incident-column + .incident-column {
+  padding-left: 32px;
+  border-left: 1px solid var(--border-hairline);
+}
+
+/* Section headings */
+
+.incident-section-heading {
+  min-width: 0;
+  margin-bottom: 12px;
+}
+
+.incident-section-heading h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.incident-section-heading p {
+  max-width: 680px;
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Label/value ledger */
+
+.incident-ledger {
+  width: 100%;
+  min-width: 0;
+}
+
+.incident-row {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.incident-row:first-child {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.incident-row-label {
+  min-width: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.incident-row-value {
+  min-width: 0;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Status mark and word */
+
+.incident-state {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.incident-state-mark {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  display: inline-block;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+}
+
+/* Diamond denotes an at-risk state. */
+
+.incident-state--at-risk .incident-state-mark {
+  border: 0;
+  border-radius: 0;
+  background: var(--status-warning);
+  transform: rotate(45deg) scale(0.9);
+}
+
+.incident-state--at-risk {
+  color: var(--text-primary);
+}
+
+/* Hollow circle denotes not connected / not assessed. */
+
+.incident-state--not-connected .incident-state-mark {
+  border-color: var(--text-secondary);
+  background: transparent;
+}
+
+/* Unknown is a dashed underline, not a badge. */
+
+.incident-unknown {
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: var(--text-secondary);
+  text-underline-offset: 4px;
+}
+
+/* Impact and open questions */
+
+.incident-open-questions {
+  min-width: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+/* Next workflow action */
+
+.incident-next-step {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.incident-next-step > div {
+  min-width: 0;
+}
+
+.incident-next-step h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.incident-next-step p {
+  max-width: 650px;
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.incident-primary-button {
+  min-width: 280px;
+  min-height: 48px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
+  border: 1px solid var(--accent-silver);
+  border-radius: var(--radius-button);
+  color: var(--bg-app);
+  background: var(--cta-metallic);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    background 180ms var(--ease-out),
+    filter 180ms var(--ease-out);
+}
+
+.incident-primary-button:hover {
+  background: var(--cta-metallic-hover);
+}
+
+.incident-primary-button:active {
+  background: var(--cta-metallic-active);
+  filter: brightness(0.95);
+}
+
+.incident-primary-button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.incident-primary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .incident-overview {
+    gap: 24px;
+  }
+
+  .incident-column + .incident-column {
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  .incident-page {
+    gap: 24px;
+    padding-top: 0;
+  }
+
+  .incident-page-heading h1 {
+    font-size: 42px;
+  }
+
+  .incident-finding {
+    font-size: 22px;
+  }
+
+  .incident-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .incident-column + .incident-column {
+    padding-top: 24px;
+    padding-left: 0;
+    border-top: 1px solid var(--border-hairline);
+    border-left: 0;
+  }
+
+  .incident-next-step {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .incident-primary-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .incident-row {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 8px;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .incident-primary-button {
+    transition: none !important;
+  }
+}

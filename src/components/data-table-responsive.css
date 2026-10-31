@@ -1,0 +1,106 @@
+/* FORESIGHTX — Responsive comparison ledger */
+
+.fx-data-table__value {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.fx-data-table__empty-message {
+  display: block;
+  padding: var(--space-4) 0;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--type-body);
+  line-height: var(--line-relaxed);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+  .fx-data-table {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .fx-data-table__table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    table-layout: auto;
+  }
+
+  .fx-data-table__mobile-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .fx-data-table__table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .fx-data-table__row {
+    display: block;
+    width: 100%;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .fx-data-table__row:last-child {
+    border-bottom: 0;
+  }
+
+  .fx-data-table__cell {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(104px, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border: 0;
+    text-align: left;
+  }
+
+  .fx-data-table__cell::before {
+    content: attr(data-label);
+    min-width: 0;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: var(--type-metadata);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-normal);
+    overflow-wrap: anywhere;
+  }
+
+  .fx-data-table__value {
+    min-width: 0;
+    color: var(--text-primary);
+    font-size: var(--type-table-cell);
+    line-height: var(--line-relaxed);
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .fx-data-table__empty {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .fx-data-table__cell {
+    grid-template-columns: minmax(88px, 0.75fr) minmax(0, 1.25fr);
+    gap: var(--space-2);
+  }
+}
