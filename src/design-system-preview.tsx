@@ -328,7 +328,7 @@ export default function DesignSystemPreview() {
             >
               <FieldRow
                 label="Product"
-                value="Temperature-Sensitive IV Medicine"
+                value="Temperature Sensitive IV Medicine"
               />
 
               <FieldRow

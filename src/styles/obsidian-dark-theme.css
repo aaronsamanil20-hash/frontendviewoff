@@ -1,0 +1,1686 @@
+﻿/* =========================================================
+   FORESIGHTX â€” OBSIDIAN DARK GLASS
+   Visual styling only. Typography and application logic
+   remain unchanged.
+========================================================= */
+
+:root {
+  /* Core surfaces */
+  --bg-app: #030506;
+  --bg-sidebar: #050708;
+
+  --surface-1: rgba(6, 9, 11, 0.84);
+  --surface-2: rgba(9, 13, 15, 0.90);
+  --surface-3: rgba(13, 18, 20, 0.95);
+
+  --bg: var(--bg-app);
+  --sidebar: var(--bg-sidebar);
+  --panel: var(--surface-1);
+  --panel-raised: var(--surface-2);
+
+  /* Text */
+  --text-primary: #F1F5F6;
+  --text-secondary: #AAB6BC;
+  --text-muted: #77858C;
+
+  --text: var(--text-primary);
+  --text-2: var(--text-secondary);
+  --muted: var(--text-secondary);
+  --subtle: var(--text-muted);
+
+  /* Electric cyan â€” accent only */
+  --accent: #00E5FF;
+  --accent-cyan: #00E5FF;
+  --cyan: #00E5FF;
+
+  /* Glass variables previously missing */
+  --glass-bg: rgba(5, 8, 10, 0.78);
+  --glass-bg-raised: rgba(8, 12, 14, 0.90);
+  --glass-border: rgba(110, 180, 190, 0.15);
+
+  --glass-blur: 24px;
+  --glass-saturation: 125%;
+
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 18px 48px rgba(0, 0, 0, 0.62),
+    0 0 20px rgba(0, 229, 255, 0.025);
+
+  --glass-shadow-floating:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 25px 65px rgba(0, 0, 0, 0.72),
+    0 0 28px rgba(0, 229, 255, 0.04);
+
+  /* Borders */
+  --border-hairline: rgba(160, 190, 198, 0.12);
+  --border-strong: rgba(0, 229, 255, 0.22);
+  --border-focus: rgba(0, 229, 255, 0.75);
+
+  --hairline: var(--border-hairline);
+  --rule: var(--border-strong);
+
+  /* Existing meaningful status colours */
+  --risk: #E28B91;
+  --ok: #91BDA0;
+  --warn: #D8B77E;
+}
+
+/* Dashboard token inheritance */
+.fx-dashboard-root {
+  --glass-bg: rgba(5, 8, 10, 0.78);
+  --glass-bg-raised: rgba(8, 12, 14, 0.90);
+  --glass-border: rgba(110, 180, 190, 0.15);
+
+  --glass-blur: 24px;
+  --glass-saturation: 125%;
+
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 18px 48px rgba(0, 0, 0, 0.62),
+    0 0 20px rgba(0, 229, 255, 0.025);
+
+  background:
+    radial-gradient(
+      ellipse at 12% 0%,
+      rgba(0, 229, 255, 0.028),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 88% 55%,
+      rgba(0, 229, 255, 0.014),
+      transparent 45%
+    ),
+    #030506 !important;
+}
+
+/* Global foundation */
+html,
+body,
+#root {
+  background-color: #030506 !important;
+}
+
+/* Workspace ambient lighting */
+.fx-dashboard-content::before {
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(0, 229, 255, 0.025),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 92% 65%,
+      rgba(0, 229, 255, 0.014),
+      transparent 42%
+    ) !important;
+}
+
+/* Dark glass sidebar */
+.fx-sidebar {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(8, 12, 14, 0.97),
+      rgba(4, 7, 9, 0.98) 55%,
+      rgba(2, 4, 5, 0.99)
+    ) !important;
+
+  -webkit-backdrop-filter: blur(28px) saturate(125%) !important;
+  backdrop-filter: blur(28px) saturate(125%) !important;
+
+  border-right: 1px solid rgba(0, 229, 255, 0.12);
+
+  box-shadow:
+    inset -1px 0 0 rgba(255, 255, 255, 0.018),
+    12px 0 45px rgba(0, 0, 0, 0.65);
+}
+
+/* Active navigation item */
+.fx-sidebar-link.is-active {
+  background: rgba(0, 229, 255, 0.055) !important;
+  border-color: rgba(0, 229, 255, 0.20);
+
+  box-shadow:
+    inset 2px 0 0 rgba(0, 229, 255, 0.65);
+}
+
+/* Dark glass header */
+.fx-topbar {
+  background: rgba(4, 7, 8, 0.88) !important;
+
+  -webkit-backdrop-filter: blur(24px) saturate(125%) !important;
+  backdrop-filter: blur(24px) saturate(125%) !important;
+
+  border-bottom: 1px solid rgba(0, 229, 255, 0.10);
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.48);
+}
+
+/* Shared glass surfaces across all workflow stages */
+:is(
+  .fx-glass,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+  .fx-panel,
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+  .fx-profile-column
+) {
+  background: var(--glass-bg) !important;
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur)) saturate(var(--glass-saturation)) !important;
+
+  backdrop-filter:
+    blur(var(--glass-blur)) saturate(var(--glass-saturation)) !important;
+
+  border-color: var(--glass-border);
+
+  box-shadow: var(--glass-shadow);
+}
+
+/* Subtle reflected light */
+:is(
+  .fx-glass,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+  .fx-panel,
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+  .fx-profile-column
+)::before {
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.025),
+      transparent 40%,
+      transparent 75%,
+      rgba(0, 229, 255, 0.012)
+    ) !important;
+}
+
+/* Dark primary actions */
+.fx-primary-button {
+  color: #E8FAFC;
+
+  background:
+    linear-gradient(145deg, #141C20, #080C0F) !important;
+
+  border: 1px solid rgba(0, 229, 255, 0.32);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 0 18px rgba(0, 229, 255, 0.04);
+}
+
+.fx-primary-button:hover {
+  background:
+    linear-gradient(145deg, #19262B, #0A1114) !important;
+
+  border-color: rgba(0, 229, 255, 0.55);
+  box-shadow: 0 0 22px rgba(0, 229, 255, 0.08);
+}
+
+/* Authentication background */
+.quiet-auth {
+  background: #030506 !important;
+  color-scheme: dark;
+}
+
+/* Authentication glass card */
+.quiet-auth__content {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(9, 14, 16, 0.94),
+      rgba(3, 6, 8, 0.97)
+    ) !important;
+
+  -webkit-backdrop-filter: blur(28px) saturate(125%) !important;
+  backdrop-filter: blur(28px) saturate(125%) !important;
+
+  border-color: rgba(110, 180, 190, 0.16);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 25px 70px rgba(0, 0, 0, 0.68),
+    0 0 28px rgba(0, 229, 255, 0.035);
+}
+
+.quiet-auth__mode-switch {
+  background: rgba(2, 5, 7, 0.88);
+  border-color: rgba(110, 180, 190, 0.14);
+}
+
+.quiet-auth__mode-tab.is-active {
+  color: #E8FAFC;
+
+  background: rgba(0, 229, 255, 0.075);
+  border-color: rgba(0, 229, 255, 0.25);
+}
+
+.quiet-auth__content :is(input, select, textarea) {
+  color: #F1F5F6;
+  background: rgba(2, 5, 7, 0.84);
+  border-color: rgba(110, 180, 190, 0.16);
+}
+/* FORESIGHTX â€” White Continue button text */
+.fx-dashboard-root .fx-page-action .fx-primary-button,
+.fx-dashboard-root .fx-page-action .fx-primary-button span {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   FORESIGHTX â€” LIVING CONTROL TOWER METRICS
+   Semantic colour, dark glass and restrained LED activity.
+========================================================= */
+
+/* Four-card metric layout */
+.fx-dashboard-root .fx-situation-line {
+  gap: 12px;
+  padding: 12px;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.fx-dashboard-root .fx-situation-line::before {
+  content: none !important;
+}
+
+/* Shared card foundation */
+.fx-dashboard-root .fx-situation-item {
+  --metric-accent: #00DFFF;
+  --metric-glow: rgba(0, 223, 255, 0.08);
+  --metric-border: rgba(0, 223, 255, 0.20);
+  --metric-ring: rgba(0, 223, 255, 0.16);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-width: 0;
+  min-height: 148px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 16px 18px 16px 20px !important;
+
+  border: 1px solid var(--metric-border) !important;
+  border-radius: 14px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 15, 18, 0.96),
+      rgba(4, 8, 10, 0.94)
+    ) !important;
+
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 14px 30px rgba(0, 0, 0, 0.36),
+    0 0 18px var(--metric-glow);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* Semantic metric colours */
+.fx-dashboard-root .fx-situation-item[data-tone="critical"] {
+  --metric-accent: #FF5969;
+  --metric-glow: rgba(255, 83, 100, 0.11);
+  --metric-border: rgba(255, 83, 100, 0.28);
+  --metric-ring: rgba(255, 83, 100, 0.20);
+}
+
+.fx-dashboard-root .fx-situation-item[data-tone="warning"] {
+  --metric-accent: #F2B84B;
+  --metric-glow: rgba(242, 184, 75, 0.08);
+  --metric-border: rgba(242, 184, 75, 0.23);
+  --metric-ring: rgba(242, 184, 75, 0.16);
+}
+
+.fx-dashboard-root .fx-situation-item[data-tone="active"] {
+  --metric-accent: #00DFFF;
+  --metric-glow: rgba(0, 223, 255, 0.09);
+  --metric-border: rgba(0, 223, 255, 0.24);
+  --metric-ring: rgba(0, 223, 255, 0.17);
+}
+
+.fx-dashboard-root .fx-situation-item[data-tone="muted"] {
+  --metric-accent: #82919A;
+  --metric-glow: rgba(130, 145, 154, 0.045);
+  --metric-border: rgba(130, 145, 154, 0.16);
+  --metric-ring: rgba(130, 145, 154, 0.12);
+}
+
+/* Restrained vertical illuminated edge */
+.fx-dashboard-root .fx-situation-item::before {
+  content: "";
+
+  position: absolute;
+  z-index: 1;
+
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+
+  width: 2px;
+  border-radius: 0 3px 3px 0;
+
+  background: var(--metric-accent);
+  box-shadow: 0 0 12px var(--metric-glow);
+
+  opacity: 0.85;
+}
+
+/* Soft light reflection */
+.fx-dashboard-root .fx-situation-item::after {
+  content: "";
+
+  position: absolute;
+  z-index: 0;
+
+  top: -55px;
+  right: -45px;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    var(--metric-glow),
+    transparent 70%
+  );
+}
+
+.fx-dashboard-root .fx-situation-item > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Status and LED row */
+.fx-dashboard-root .fx-situation-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 12px;
+
+  color: var(--metric-accent);
+}
+
+.fx-dashboard-root .fx-situation-led {
+  flex: 0 0 7px;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--metric-accent);
+
+  box-shadow:
+    0 0 0 3px var(--metric-ring),
+    0 0 11px var(--metric-accent);
+}
+
+.fx-dashboard-root .fx-situation-state {
+  color: var(--metric-accent);
+
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.09em;
+}
+
+/* Colour-coded metric value; existing size and weight preserved */
+.fx-dashboard-root .fx-situation-value {
+  color: var(--metric-accent) !important;
+
+  text-shadow:
+    0 0 18px var(--metric-glow);
+}
+
+/* Keep labels readable against dark surfaces */
+.fx-dashboard-root .fx-situation-label {
+  color: #EAF0F2;
+}
+
+.fx-dashboard-root .fx-situation-detail {
+  color: #95A4AA;
+}
+
+/* Only the active disruption LED pulses */
+@keyframes fx-metric-critical-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 3px var(--metric-ring),
+      0 0 11px var(--metric-accent);
+  }
+
+  50% {
+    opacity: 0.78;
+    box-shadow:
+      0 0 0 6px rgba(255, 83, 100, 0.07),
+      0 0 17px var(--metric-accent);
+  }
+}
+
+.fx-dashboard-root
+.fx-situation-item[data-tone="critical"]
+.fx-situation-led {
+  animation: fx-metric-critical-pulse 2s ease-in-out infinite;
+}
+
+/* Gentle hover response */
+@media (hover: hover) and (pointer: fine) {
+  .fx-dashboard-root .fx-situation-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--metric-accent) !important;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 18px 34px rgba(0, 0, 0, 0.44),
+      0 0 22px var(--metric-glow);
+  }
+}
+
+/* Responsive card sizing */
+@media (max-width: 767px) {
+  .fx-dashboard-root .fx-situation-line {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .fx-dashboard-root .fx-situation-item {
+    min-height: 126px;
+    padding: 14px !important;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .fx-situation-item {
+    transition: none;
+  }
+
+  .fx-dashboard-root
+  .fx-situation-item[data-tone="critical"]
+  .fx-situation-led {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   FORESIGHTX — SHIPMENT AND DISRUPTION INTELLIGENCE
+   Dark glass panels, semantic accents and incident pathway.
+========================================================= */
+
+.fx-dashboard-root .fx-brief-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-areas:
+    "disruption shipment"
+    "impact impact";
+  gap: 14px;
+  align-items: stretch;
+}
+
+.fx-dashboard-root .fx-brief-column[data-brief="disruption"] {
+  grid-area: disruption;
+
+  border: 1px solid rgba(255, 83, 100, 0.28) !important;
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(255, 83, 100, 0.075),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(17, 10, 13, 0.96),
+      rgba(5, 8, 10, 0.96)
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 40px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(255, 83, 100, 0.045);
+}
+
+.fx-dashboard-root .fx-brief-column[data-brief="shipment"] {
+  grid-area: shipment;
+
+  border: 1px solid rgba(242, 184, 75, 0.23) !important;
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(242, 184, 75, 0.06),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(16, 13, 8, 0.96),
+      rgba(5, 8, 10, 0.96)
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 18px 40px rgba(0, 0, 0, 0.40),
+    0 0 20px rgba(242, 184, 75, 0.035);
+}
+
+/* Status labels */
+.fx-dashboard-root .fx-brief-kicker {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: var(--type-panel-label, 12px);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.fx-dashboard-root .fx-brief-kicker[data-tone="critical"] {
+  color: #FF7784;
+  background: transparent;
+  border: 0;
+}
+
+.fx-dashboard-root .fx-brief-kicker[data-tone="warning"] {
+  color: #F2C36F;
+  background: transparent;
+  border: 0;
+}
+
+/* LED indicators */
+.fx-dashboard-root .fx-brief-led {
+  flex: 0 0 7px;
+
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.fx-dashboard-root .fx-brief-kicker[data-tone="critical"] .fx-brief-led {
+  background: #FF5969;
+  box-shadow:
+    0 0 0 3px rgba(255, 83, 100, 0.13),
+    0 0 12px rgba(255, 83, 100, 0.75);
+
+  animation: fx-incident-led-pulse 2.2s ease-in-out infinite;
+}
+
+.fx-dashboard-root .fx-brief-kicker[data-tone="warning"] .fx-brief-led {
+  background: #F2B84B;
+  box-shadow:
+    0 0 0 3px rgba(242, 184, 75, 0.12),
+    0 0 10px rgba(242, 184, 75, 0.40);
+}
+
+@keyframes fx-incident-led-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 3px rgba(255, 83, 100, 0.13),
+      0 0 12px rgba(255, 83, 100, 0.75);
+  }
+
+  50% {
+    opacity: 0.78;
+    box-shadow:
+      0 0 0 6px rgba(255, 83, 100, 0.055),
+      0 0 17px rgba(255, 83, 100, 0.85);
+  }
+}
+
+/* Preserve existing panel typography; strengthen heading contrast */
+.fx-dashboard-root .fx-brief-column[data-brief="disruption"] .fx-section-heading h2,
+.fx-dashboard-root .fx-brief-column[data-brief="shipment"] .fx-section-heading h2 {
+  color: #F1F5F6;
+}
+
+/* Distinguish data rows without changing their content */
+.fx-dashboard-root .fx-brief-column[data-brief] .fx-ledger-row {
+  border-bottom-color: rgba(160, 190, 198, 0.10);
+}
+
+.fx-dashboard-root .fx-brief-column[data-brief] .fx-ledger-row:last-child {
+  border-bottom-color: transparent;
+}
+
+/* Cause-to-impact connector */
+.fx-dashboard-root .fx-incident-link {
+  grid-area: impact;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  min-width: 0;
+  padding: 15px 18px;
+
+  border: 1px solid rgba(0, 223, 255, 0.17);
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      110deg,
+      rgba(0, 223, 255, 0.045),
+      rgba(5, 9, 11, 0.92) 44%,
+      rgba(5, 9, 11, 0.96)
+    );
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 12px 28px rgba(0, 0, 0, 0.32);
+}
+
+.fx-dashboard-root .fx-incident-link__caption {
+  color: #8CA2AA;
+  font-size: var(--type-panel-label, 12px);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.fx-dashboard-root .fx-incident-link__flow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.fx-dashboard-root .fx-incident-link__node {
+  display: inline-flex;
+  align-items: center;
+
+  min-width: 0;
+  padding: 7px 10px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.025);
+  overflow-wrap: anywhere;
+}
+
+.fx-dashboard-root .fx-incident-link__node--event {
+  color: #FF8791;
+  border-color: rgba(255, 83, 100, 0.19);
+  background: rgba(255, 83, 100, 0.055);
+}
+
+.fx-dashboard-root .fx-incident-link__arrow {
+  color: #00DFFF;
+  text-shadow: 0 0 12px rgba(0, 223, 255, 0.40);
+}
+
+.fx-dashboard-root .fx-incident-link__node--shipment {
+  color: #F2C36F;
+  border-color: rgba(242, 184, 75, 0.18);
+  background: rgba(242, 184, 75, 0.05);
+}
+
+.fx-dashboard-root .fx-incident-link__destination {
+  color: #AAB6BC;
+  overflow-wrap: anywhere;
+}
+
+/* Responsive order remains disruption, shipment, impact path */
+@media (max-width: 60rem) {
+  .fx-dashboard-root .fx-brief-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "disruption"
+      "shipment"
+      "impact";
+  }
+
+  .fx-dashboard-root .fx-incident-link {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fx-dashboard-root .fx-incident-link__flow {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .fx-dashboard-root .fx-brief-column[data-brief] {
+    border-radius: 12px;
+  }
+
+  .fx-dashboard-root .fx-incident-link__flow {
+    gap: 7px;
+  }
+}
+
+/* Accessibility: disable pulsing when reduced motion is requested */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .fx-brief-kicker[data-tone="critical"] .fx-brief-led {
+    animation: none;
+  }
+}
+
+
+
+
+/* =========================================================
+   FORESIGHTX — WORKFLOW CONTROL INTERFACE
+   Connected stages, evaluation status and dark glass.
+   No application logic or typography changes.
+========================================================= */
+
+/* Main two-panel layout */
+.fx-dashboard-root .fx-progress-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* Shared dark-glass panel treatment */
+.fx-dashboard-root .fx-progress-column {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: 24px;
+
+  border: 1px solid rgba(110, 180, 190, 0.15);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 15, 18, 0.94),
+      rgba(4, 7, 9, 0.97)
+    );
+
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+  backdrop-filter: blur(24px) saturate(125%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 18px 42px rgba(0, 0, 0, 0.42);
+}
+
+/* Workflow heading */
+.fx-dashboard-root .fx-progress-column .fx-section-heading {
+  margin-bottom: 20px;
+}
+
+.fx-dashboard-root .fx-progress-column .fx-section-heading h2 {
+  color: #F1F5F6;
+}
+
+.fx-dashboard-root .fx-progress-column .fx-section-heading p {
+  color: #899BA2;
+}
+
+/* Connected five-stage rail */
+.fx-dashboard-root .fx-workflow-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 0 8px 42px;
+  border-top: 0;
+}
+
+/* Continuous stage connection */
+.fx-dashboard-root .fx-workflow-list::before {
+  content: "";
+
+  position: absolute;
+  left: 13px;
+  top: 25px;
+  bottom: 25px;
+
+  width: 1px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 223, 255, 0.60),
+    rgba(0, 223, 255, 0.18) 35%,
+    rgba(110, 130, 140, 0.20) 75%,
+    rgba(110, 130, 140, 0.10)
+  );
+
+  pointer-events: none;
+}
+
+/* Individual clickable stage */
+.fx-dashboard-root .fx-workflow-row {
+  position: relative;
+  isolation: isolate;
+
+  min-height: 68px;
+  padding: 12px 10px;
+
+  border: 0;
+  border-bottom: 1px solid rgba(160, 190, 198, 0.09);
+  border-radius: 0;
+
+  background: transparent;
+
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+}
+
+.fx-dashboard-root .fx-workflow-row:last-child {
+  border-bottom-color: transparent;
+}
+
+/* Stage number node */
+.fx-dashboard-root .fx-workflow-number {
+  position: absolute;
+  left: -42px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  color: #829198;
+
+  background: #080D10;
+  border: 1px solid rgba(130, 150, 160, 0.24);
+  border-radius: 6px;
+
+  z-index: 2;
+}
+
+/* Current stage */
+.fx-dashboard-root .fx-workflow-row[aria-current="page"] {
+  color: #EAFBFE;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 223, 255, 0.075),
+      rgba(0, 223, 255, 0.012) 78%,
+      transparent
+    );
+
+  box-shadow: inset 2px 0 0 #00DFFF;
+}
+
+.fx-dashboard-root
+.fx-workflow-row[aria-current="page"]
+.fx-workflow-number {
+  color: #00DFFF;
+
+  border-color: rgba(0, 223, 255, 0.65);
+
+  background: rgba(0, 30, 36, 0.95);
+
+  box-shadow:
+    0 0 0 3px rgba(0, 223, 255, 0.06),
+    0 0 15px rgba(0, 223, 255, 0.16);
+}
+
+/* Next stage */
+.fx-dashboard-root
+.fx-workflow-row:has(.fx-state--next)
+.fx-workflow-number {
+  color: #00DFFF;
+  border-color: rgba(0, 223, 255, 0.35);
+}
+
+/* Future stages */
+.fx-dashboard-root
+.fx-workflow-row:has(.fx-state--not-started)
+.fx-workflow-number {
+  color: #77858C;
+  border-color: rgba(130, 145, 154, 0.18);
+}
+
+/* Stage labels */
+.fx-dashboard-root .fx-workflow-copy strong {
+  color: #EAF0F2;
+}
+
+.fx-dashboard-root
+.fx-workflow-row[aria-current="page"]
+.fx-workflow-copy strong {
+  color: #FFFFFF;
+}
+
+.fx-dashboard-root .fx-workflow-copy > span {
+  color: #84949B;
+}
+
+/* Status indicators are plain text and LED dots, never pills */
+.fx-dashboard-root .fx-workflow-row .fx-state {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Current stage LED */
+.fx-dashboard-root
+.fx-workflow-row[aria-current="page"]
+.fx-state {
+  color: #00DFFF;
+}
+
+.fx-dashboard-root
+.fx-workflow-row[aria-current="page"]
+.fx-state-mark {
+  border-color: #00DFFF;
+  background: #00DFFF;
+
+  box-shadow: 0 0 11px rgba(0, 223, 255, 0.65);
+}
+
+/* Next stage LED */
+.fx-dashboard-root .fx-workflow-row .fx-state--next {
+  color: #00DFFF;
+}
+
+/* Future-stage status */
+.fx-dashboard-root .fx-workflow-row .fx-state--not-started {
+  color: #839198;
+}
+
+/* Navigation icon */
+.fx-dashboard-root .fx-workflow-nav-icon {
+  color: #74858C;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.fx-dashboard-root
+.fx-workflow-row[aria-current="page"]
+.fx-workflow-nav-icon {
+  color: #00DFFF;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-dashboard-root .fx-workflow-row:hover {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .fx-dashboard-root .fx-workflow-row:hover .fx-workflow-nav-icon {
+    color: #00DFFF;
+    transform: translateX(3px);
+  }
+}
+
+/* Keyboard accessibility */
+.fx-dashboard-root .fx-workflow-row:focus-visible {
+  outline: 2px solid #00DFFF;
+  outline-offset: 3px;
+}
+
+/* Evaluation panel */
+.fx-dashboard-root .fx-progress-column:nth-child(2) {
+  border-color: rgba(53, 214, 138, 0.13);
+}
+
+/* Evaluation ledger */
+.fx-dashboard-root .fx-progress-column:nth-child(2) .fx-ledger {
+  border-top: 1px solid rgba(160, 190, 198, 0.12);
+}
+
+.fx-dashboard-root .fx-progress-column:nth-child(2) .fx-ledger-row {
+  min-height: 54px;
+  padding: 12px 2px;
+
+  border-bottom: 1px solid rgba(160, 190, 198, 0.09);
+
+  background: transparent;
+}
+
+.fx-dashboard-root .fx-progress-column:nth-child(2) .fx-ledger-row:last-child {
+  border-bottom: 0;
+}
+
+/* Evaluation labels */
+.fx-dashboard-root .fx-progress-column:nth-child(2) .fx-ledger-label {
+  color: #C5D0D4;
+}
+
+/* Ready: green */
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(-n+2)
+.fx-state {
+  color: #35D68A;
+}
+
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(-n+2)
+.fx-state-mark {
+  border-color: #35D68A;
+  background: #35D68A;
+
+  box-shadow: 0 0 10px rgba(53, 214, 138, 0.35);
+}
+
+/* Recovery evaluation: not run */
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(3)
+.fx-state {
+  color: #89979E;
+}
+
+/* Plan comparison: waiting */
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(4)
+.fx-state {
+  color: #89979E;
+}
+
+/* Human review: pending, amber */
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(5)
+.fx-state {
+  color: #F2B84B;
+}
+
+.fx-dashboard-root
+.fx-progress-column:nth-child(2)
+.fx-ledger-row:nth-child(5)
+.fx-state-mark {
+  border-color: #F2B84B;
+  background: #F2B84B;
+
+  box-shadow: 0 0 10px rgba(242, 184, 75, 0.34);
+}
+
+/* Responsive layout */
+@media (max-width: 60rem) {
+  .fx-dashboard-root .fx-progress-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .fx-dashboard-root .fx-progress-column {
+    padding: 18px;
+  }
+
+  .fx-dashboard-root .fx-workflow-row {
+    gap: 10px;
+  }
+
+  .fx-dashboard-root .fx-workflow-copy {
+    flex: 1 1 auto;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .fx-workflow-row,
+  .fx-dashboard-root .fx-workflow-nav-icon {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   FORESIGHTX — AUTOMATIC OPERATIONAL STATUS
+   Scenario-derived state, fast LED pulse, no status pills.
+========================================================= */
+
+.fx-dashboard-root .fx-page-heading {
+  gap: 28px;
+}
+
+.fx-dashboard-root .fx-operational-status {
+  --operational-color: #87949A;
+  --operational-glow: rgba(135, 148, 154, 0.35);
+
+  flex: 0 0 260px;
+  min-width: 220px;
+  max-width: 300px;
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  padding: 8px 0 8px 20px;
+
+  border: 0;
+  border-left: 1px solid rgba(160, 190, 198, 0.18);
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+}
+
+.fx-dashboard-root .fx-operational-status[data-state="critical"] {
+  --operational-color: #F06D78;
+  --operational-glow: rgba(240, 109, 120, 0.75);
+}
+
+.fx-dashboard-root .fx-operational-status[data-state="attention"] {
+  --operational-color: #E3B45D;
+  --operational-glow: rgba(227, 180, 93, 0.70);
+}
+
+.fx-dashboard-root .fx-operational-status[data-state="healthy"] {
+  --operational-color: #48C78E;
+  --operational-glow: rgba(72, 199, 142, 0.40);
+}
+
+.fx-dashboard-root .fx-operational-status[data-state="unknown"] {
+  --operational-color: #87949A;
+  --operational-glow: rgba(135, 148, 154, 0.25);
+}
+
+.fx-dashboard-root .fx-operational-status__eyebrow {
+  color: #8C999F;
+  font-size: var(--type-panel-label, 12px);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.fx-dashboard-root .fx-operational-status__main {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.fx-dashboard-root .fx-operational-status__main strong {
+  color: var(--operational-color);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+}
+
+.fx-dashboard-root .fx-operational-status__led {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: var(--operational-color);
+
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--operational-color) 16%, transparent),
+    0 0 10px var(--operational-glow);
+}
+
+/* Fast but smooth pulse for at-risk and attention states */
+.fx-dashboard-root .fx-operational-status[data-state="critical"]
+.fx-operational-status__led,
+.fx-dashboard-root .fx-operational-status[data-state="attention"]
+.fx-operational-status__led {
+  animation: fx-operational-fast-pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes fx-operational-fast-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--operational-color) 18%, transparent),
+      0 0 11px var(--operational-glow);
+  }
+
+  50% {
+    opacity: 0.38;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--operational-color) 8%, transparent),
+      0 0 5px var(--operational-glow);
+  }
+}
+
+.fx-dashboard-root .fx-operational-status__detail {
+  margin: 0;
+  color: #AAB6BC;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.fx-dashboard-root .fx-operational-status__source {
+  color: #75848A;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.065em;
+}
+
+/* Keep the header balanced on narrower screens */
+@media (max-width: 60rem) {
+  .fx-dashboard-root .fx-page-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fx-dashboard-root .fx-operational-status {
+    flex: initial;
+    width: auto;
+    max-width: none;
+    align-self: stretch;
+
+    margin-top: 4px;
+    padding: 12px 0 0;
+
+    border-left: 0;
+    border-top: 1px solid rgba(160, 190, 198, 0.14);
+  }
+}
+
+/* Respect accessibility motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .fx-operational-status__led {
+    animation: none !important;
+  }
+}
+/* =========================================
+   RIPPLEGUARD + DECISION PASSPORT
+   TRANSPARENT LIQUID GLASS
+========================================= */
+
+.fx-dashboard-root .ripple-page,
+.fx-dashboard-root .passport-page {
+  --glass-bg: rgba(9, 22, 36, 0.36);
+  --glass-bg-raised: rgba(13, 30, 46, 0.48);
+
+  --glass-border: rgba(145, 215, 230, 0.19);
+  --glass-hairline: rgba(170, 215, 225, 0.10);
+
+  --glass-blur: 18px;
+  --glass-saturation: 145%;
+
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 18px 46px rgba(0, 0, 0, 0.34),
+    0 0 26px rgba(0, 229, 255, 0.035);
+
+  --glass-shadow-floating:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 22px 55px rgba(0, 0, 0, 0.40),
+    0 0 32px rgba(0, 229, 255, 0.055);
+
+  position: relative;
+  isolation: isolate;
+
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+}
+
+/* Ambient light behind the glass */
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -20px -28px;
+
+  width: auto;
+  height: auto;
+
+  border-radius: 0;
+  filter: none;
+  opacity: 1;
+  animation: none;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 12% 8%,
+      rgba(0, 229, 255, 0.12),
+      transparent 37%
+    ),
+    radial-gradient(
+      ellipse at 92% 28%,
+      rgba(0, 110, 255, 0.10),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 48% 95%,
+      rgba(0, 229, 255, 0.045),
+      transparent 48%
+    );
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)::after {
+  content: none;
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page) > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Translucent glass material */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-summary-card,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-review-list {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.008) 48%,
+      rgba(0, 229, 255, 0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter:
+    blur(var(--glass-blur))
+    saturate(var(--glass-saturation));
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur))
+    saturate(var(--glass-saturation));
+
+  border-radius: var(--radius-panel, 14px);
+}
+
+/* Smaller glass cards */
+
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .passport-page .passport-summary-card {
+  border-radius: 12px;
+
+  transition:
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* Amber glass status panels */
+
+.fx-dashboard-root .ripple-page .ripple-status-banner,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(216, 183, 126, 0.105),
+      rgba(9, 22, 36, 0.34)
+    );
+
+  border: 1px solid rgba(216, 183, 126, 0.23);
+
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+
+  border-radius: 14px;
+}
+
+/* Empty findings surface */
+
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(216, 183, 126, 0.09),
+      transparent 65%
+    ),
+    var(--glass-bg);
+
+  border-style: dashed;
+  border-color: rgba(216, 183, 126, 0.22);
+}
+
+/* Cyan evidence surface */
+
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  background:
+    linear-gradient(
+      110deg,
+      rgba(0, 229, 255, 0.075),
+      rgba(9, 22, 36, 0.32)
+    );
+
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-left: 2px solid rgba(0, 229, 255, 0.65);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Typography — Emil / Apple design principles */
+
+.fx-dashboard-root .ripple-intro h2,
+.fx-dashboard-root .passport-intro h2 {
+  font-family: var(--font-editorial, Georgia, serif);
+
+  font-size: clamp(2.25rem, 3.5vw, 3rem);
+  font-weight: 600;
+
+  line-height: 1.03;
+  letter-spacing: -0.025em;
+
+  font-optical-sizing: auto;
+}
+
+.fx-dashboard-root .ripple-section-heading h3,
+.fx-dashboard-root .passport-section-heading h3 {
+  font-family: var(--font-ui, system-ui, sans-serif);
+
+  font-size: 1.125rem;
+  font-weight: 650;
+
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page) p {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)
+:is(.ripple-kicker, .passport-kicker) {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page) strong {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* No pills — plain text statuses */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Status dots */
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)
+:is(.ripple-demo-badge, .passport-demo-badge)::before,
+.fx-dashboard-root .passport-evidence-status.available::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: var(--accent);
+  box-shadow: 0 0 9px var(--accent);
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)
+:is(.ripple-status-tag, .ripple-area-state, .passport-status-tag, .passport-agent-status, .passport-evidence-status.unavailable)::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: var(--warn);
+  box-shadow: 0 0 8px var(--warn);
+}
+
+.passport-evidence-status.available {
+  color: var(--ok) !important;
+}
+
+/* Interaction polish */
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-dashboard-root .ripple-page .ripple-area-card:hover,
+  .fx-dashboard-root .passport-page .passport-summary-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 229, 255, 0.28);
+    box-shadow: var(--glass-shadow-floating);
+  }
+}
+
+.fx-dashboard-root .ripple-page button:active,
+.fx-dashboard-root .passport-page button:active {
+  transform: scale(0.97);
+  transition: transform 140ms ease-out;
+}
+
+/* Accessibility fallbacks */
+
+@media (prefers-reduced-transparency: reduce) {
+  .fx-dashboard-root .ripple-page,
+  .fx-dashboard-root .passport-page {
+    --glass-bg: rgba(8, 14, 24, 0.95);
+  }
+
+  .fx-dashboard-root :is(.ripple-page, .passport-page) * {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page .ripple-area-card,
+  .fx-dashboard-root .passport-page .passport-summary-card {
+    transition: none;
+  }
+
+  .fx-dashboard-root .ripple-page .ripple-area-card:hover,
+  .fx-dashboard-root .passport-page .passport-summary-card:hover {
+    transform: none;
+  }
+}

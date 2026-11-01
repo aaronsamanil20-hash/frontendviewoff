@@ -1,0 +1,3422 @@
+﻿/* =========================================================
+   FORESIGHTX â€” GLOBAL LIQUID GLASS OVERHAUL
+   Visual layer only. No application logic changes.
+========================================================= */
+
+/* =========================================================
+   1. GLOBAL FOUNDATION
+========================================================= */
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+  background: #050811;
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #001018;
+  background: rgba(0, 229, 255, 0.75);
+}
+
+/* =========================================================
+   2. DASHBOARD THEME NORMALISATION
+========================================================= */
+
+.fx-dashboard-root {
+  --bg-app: var(--bg);
+
+  --surface-1: rgba(15, 25, 45, 0.24);
+  --surface-2: rgba(15, 25, 45, 0.40);
+  --surface-3: rgba(15, 25, 45, 0.58);
+
+  --accent-cyan: var(--accent);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-2);
+  --text-muted: var(--muted);
+
+  --border-hairline: var(--hairline);
+  --border-strong: var(--rule);
+
+  --status-red: var(--risk);
+  --status-green: var(--ok);
+  --status-amber: var(--warn);
+  --status-neutral: var(--muted);
+
+  --font-ui: "Plus Jakarta Sans", sans-serif;
+  --font-editorial: "Cormorant Garamond", serif;
+
+  position: relative;
+  isolation: isolate;
+
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+
+  color: var(--text);
+  background:
+    radial-gradient(
+      ellipse at 12% 0%,
+      rgba(0, 105, 255, 0.13),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 88% 55%,
+      rgba(0, 229, 255, 0.075),
+      transparent 45%
+    ),
+    #050811;
+}
+
+.fx-dashboard-content,
+.fx-main-content,
+.fx-stage-content {
+  background: transparent !important;
+}
+
+.fx-dashboard-content {
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+  min-height: 100vh;
+
+  margin-left: var(--sidebar-width);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.fx-dashboard-content::before {
+  content: "";
+
+  position: fixed;
+  z-index: -1;
+  inset: 0 0 0 var(--sidebar-width);
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(0, 100, 255, 0.13),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 92% 65%,
+      rgba(0, 229, 255, 0.08),
+      transparent 42%
+    );
+}
+
+.fx-main-content {
+  width: 100%;
+  max-width: var(--content-max-width);
+  min-width: 0;
+  min-height: 0;
+
+  flex: 1;
+
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.fx-stage-content {
+  min-width: 0;
+  opacity: 1;
+}
+
+/* =========================================================
+   3. SIDEBAR â€” FROSTED GLASS
+========================================================= */
+
+.fx-sidebar {
+  position: fixed;
+  z-index: var(--z-sidebar);
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: var(--sidebar-width);
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem 1.125rem;
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(25, 43, 69, 0.76),
+      rgba(10, 19, 34, 0.72) 52%,
+      rgba(5, 8, 17, 0.88)
+    );
+
+  -webkit-backdrop-filter: blur(26px) saturate(155%);
+  backdrop-filter: blur(26px) saturate(155%);
+
+  border-right: 1px solid rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    inset -1px 0 0 rgba(255, 255, 255, 0.035),
+    12px 0 40px rgba(0, 0, 0, 0.30);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.fx-sidebar-brand {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0 0.625rem;
+  margin-bottom: 3rem;
+}
+
+.fx-sidebar-brand::before,
+.fx-sidebar-brand::after {
+  content: none !important;
+  display: none !important;
+}
+
+.fx-brand-name {
+  color: #ffffff;
+
+  font-family: var(--font-editorial);
+  font-size: 1.75rem;
+  font-weight: 600;
+
+  line-height: 1.15;
+  letter-spacing: 0.035em;
+}
+
+.fx-brand-accent {
+  color: var(--accent);
+}
+
+.fx-sidebar-section-label {
+  padding: 0 0.625rem;
+  margin-bottom: 0.875rem;
+
+  color: var(--muted);
+
+  font-size: 0.6875rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.fx-sidebar-navigation {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+/* Decorative stage numbering removed. */
+
+.fx-sidebar-step-number {
+  display: none !important;
+}
+
+.fx-sidebar-link {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 3.125rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  padding: 0.75rem 0.875rem;
+
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  border-radius: 0.75rem;
+
+  color: var(--text-2);
+  background: transparent;
+
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring);
+}
+
+.fx-sidebar-link-label {
+  min-width: 0;
+
+  color: inherit;
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.fx-sidebar-link-icon {
+  flex: 0 0 auto;
+  color: var(--muted);
+
+  transition: color 180ms var(--ease-spring);
+}
+
+.fx-sidebar-link.is-active {
+  color: #ffffff;
+
+  border-color: rgba(0, 229, 255, 0.09);
+  border-left-color: var(--accent);
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(0, 229, 255, 0.14),
+      rgba(0, 136, 255, 0.055) 68%,
+      rgba(255, 255, 255, 0.015)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.fx-sidebar-link.is-active .fx-sidebar-link-icon {
+  color: var(--accent);
+}
+
+.fx-sidebar-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.fx-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin-top: auto;
+  padding-top: 1rem;
+
+  border: 0 !important;
+}
+
+/* Account control */
+
+.fx-sidebar-bottom .fx-account-trigger,
+.fx-account-trigger {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.75rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.75rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 0.875rem;
+
+  color: #ffffff;
+  background: rgba(15, 25, 45, 0.42);
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring);
+}
+
+.fx-account-icon {
+  flex: 0 0 1.125rem;
+  color: var(--accent);
+}
+
+.fx-account-identity {
+  min-width: 0;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fx-account-identity strong,
+.fx-account-identity span {
+  display: block;
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fx-account-identity strong {
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.fx-account-identity span {
+  color: var(--text-2);
+  font-size: 0.75rem;
+}
+
+.fx-sidebar-signout {
+  width: 100%;
+  min-height: 2.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0 0.875rem;
+
+  border: 0;
+  border-radius: 0.625rem;
+
+  color: var(--text-2);
+  background: transparent;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring);
+}
+
+/* =========================================================
+   4. TOPBAR
+========================================================= */
+
+.fx-topbar {
+  position: sticky;
+  z-index: var(--z-header);
+  top: 0;
+
+  min-height: 4.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 0.875rem 3rem;
+
+  background: rgba(7, 13, 25, 0.64);
+
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.085);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.fx-topbar-title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Repeated global environment badges removed. */
+
+.fx-environment-label,
+.fx-environment-mark,
+.quiet-auth__environment {
+  display: none !important;
+}
+
+/* =========================================================
+   5. PAGE HEADINGS
+========================================================= */
+
+.fx-page-heading h1,
+.incident-page-heading h1,
+.recovery-intro h2,
+.ripple-intro h2,
+.passport-intro h2,
+.fx-profile-heading h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family: var(--font-editorial);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+
+  text-shadow: 0 0 22px rgba(0, 229, 255, 0.13);
+}
+
+/* Stage-count headings removed; meaningful section kickers remain. */
+
+.fx-stage-label,
+.incident-stage-label {
+  display: none !important;
+}
+
+.fx-finding,
+.incident-finding,
+.fx-profile-finding {
+  max-width: 65ch;
+
+  margin-top: 0.875rem;
+
+  color: var(--text-2);
+
+  font-family: var(--font-editorial);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   6. SHARED GLASS MATERIAL
+========================================================= */
+
+.fx-glass,
+.fx-workflow-spine,
+.fx-situation-line,
+.fx-brief-column,
+.fx-progress-column,
+.fx-system-status,
+.fx-panel,
+
+.incident-column,
+.incident-open-questions,
+.incident-next-step,
+
+.recovery-status-banner,
+.recovery-context,
+.recovery-plan-card,
+.recovery-decision-panel,
+.recovery-information-panel,
+
+.ripple-status-banner,
+.ripple-context,
+.ripple-area-card,
+.ripple-findings-empty,
+.ripple-limitations,
+
+.passport-status-banner,
+.passport-context,
+.passport-summary-card,
+.passport-record-list,
+.passport-agent-list,
+.passport-review-banner,
+.passport-review-list,
+.passport-integrity-note,
+
+.fx-profile-column {
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+
+  background: var(--glass-bg);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+  backdrop-filter:
+    blur(var(--glass-blur)) saturate(var(--glass-saturation));
+
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-panel);
+
+  box-shadow: var(--glass-shadow);
+}
+
+/* Restrained reflected-light effect. */
+
+:is(
+  .fx-glass,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+  .fx-panel,
+
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+
+  .fx-profile-column
+)::before {
+  content: "";
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  border-radius: inherit;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.075),
+      transparent 38%,
+      transparent 72%,
+      rgba(0, 229, 255, 0.025)
+    );
+}
+
+:is(
+  .fx-glass,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+  .fx-panel,
+
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+
+  .fx-profile-column
+) > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Consistent glass padding. */
+
+.fx-brief-column,
+.fx-progress-column,
+.fx-system-status,
+.incident-column,
+.incident-open-questions,
+.incident-next-step,
+.recovery-status-banner,
+.recovery-context,
+.recovery-plan-card,
+.recovery-decision-panel,
+.recovery-information-panel,
+.ripple-status-banner,
+.ripple-context,
+.ripple-area-card,
+.ripple-findings-empty,
+.ripple-limitations,
+.passport-status-banner,
+.passport-context,
+.passport-summary-card,
+.passport-record-list,
+.passport-agent-list,
+.passport-review-banner,
+.passport-review-list,
+.passport-integrity-note,
+.fx-profile-column {
+  padding: 1.5rem;
+}
+
+/* =========================================================
+   7. CONTROL TOWER â€” WORKFLOW SPINE
+========================================================= */
+
+.fx-control-tower {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fx-workflow-spine {
+  padding: 1rem;
+}
+
+.fx-workflow-spine-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.fx-workflow-spine-item {
+  min-width: 0;
+  min-height: 4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+
+  padding: 0.75rem;
+
+  border: 1px solid var(--glass-hairline);
+  border-radius: 0.75rem;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.fx-workflow-spine-item--current {
+  border-color: rgba(0, 229, 255, 0.24);
+
+  background:
+    linear-gradient(
+      110deg,
+      rgba(0, 229, 255, 0.13),
+      rgba(0, 136, 255, 0.04)
+    );
+}
+
+.fx-workflow-spine-mark {
+  width: 0.5625rem;
+  height: 0.5625rem;
+  flex: 0 0 0.5625rem;
+
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+
+  background: transparent;
+}
+
+.fx-workflow-spine-item--current .fx-workflow-spine-mark {
+  border-color: var(--accent);
+  background: var(--accent);
+
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+}
+
+.fx-workflow-spine-item--next .fx-workflow-spine-mark {
+  border-color: var(--accent);
+}
+
+.fx-workflow-spine-copy {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fx-workflow-spine-copy strong {
+  color: var(--text);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+.fx-workflow-spine-copy > span {
+  color: var(--text-2);
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   8. CONTROL TOWER â€” METRICS
+========================================================= */
+
+.fx-situation-line {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  padding: 1rem;
+}
+
+.fx-situation-item {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.75rem 1.25rem;
+
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--glass-hairline);
+
+  border-radius: 0;
+}
+
+.fx-situation-item:last-child {
+  border-right: 0;
+}
+
+.fx-situation-item + .fx-situation-item {
+  padding-left: 1.25rem;
+}
+
+.fx-situation-value {
+  color: #ffffff;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.12);
+}
+
+.fx-situation-label {
+  color: var(--text-2);
+
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fx-situation-detail {
+  color: var(--muted);
+
+  font-size: 0.75rem;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.fx-brief-grid,
+.fx-progress-grid {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.fx-section-heading {
+  min-width: 0;
+  margin-bottom: 1.25rem;
+}
+
+.fx-section-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fx-section-heading p {
+  max-width: 65ch;
+  margin: 0.375rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   9. DATA LEDGERS AND WORKFLOW LISTS
+========================================================= */
+
+.fx-ledger {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.fx-ledger-row,
+.fx-ledger-row:first-child {
+  min-width: 0;
+  min-height: 3rem;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 1rem;
+
+  margin: 0;
+  padding: 0.875rem 0;
+
+  border: 0;
+  border-bottom: 1px solid var(--glass-hairline);
+  border-radius: 0;
+
+  background: transparent;
+}
+
+.fx-ledger-row:first-child {
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.fx-ledger-row:last-child {
+  border-bottom: 0;
+}
+
+.fx-ledger-label {
+  min-width: 0;
+
+  color: var(--text-2);
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.fx-ledger-value {
+  min-width: 0;
+
+  color: #ffffff;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.fx-workflow-list {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.fx-workflow-row {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.75rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  padding: 0.75rem 0;
+
+  border: 0;
+  border-bottom: 1px solid var(--glass-hairline);
+  border-radius: 0;
+
+  color: var(--text);
+  background: transparent;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring);
+}
+
+.fx-workflow-row[aria-current="page"] {
+  color: var(--accent);
+}
+
+.fx-workflow-number {
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+
+  color: var(--muted);
+
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-workflow-copy {
+  min-width: 0;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fx-workflow-copy strong {
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.fx-workflow-copy > span {
+  color: var(--text-2);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   10. STATUS INDICATORS
+========================================================= */
+
+.fx-state {
+  min-width: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--text-2);
+
+  font-size: 0.75rem;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.fx-state-mark {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: 0 0 0.5rem;
+
+  border: 1px solid currentColor;
+  border-radius: 50%;
+
+  background: transparent;
+}
+
+.fx-state--ready .fx-state-mark {
+  border-color: var(--ok);
+  background: var(--ok);
+}
+
+.fx-state--next .fx-state-mark {
+  border-color: var(--accent);
+}
+
+.fx-state--not-started .fx-state-mark,
+.fx-state--not-connected .fx-state-mark {
+  border-color: var(--muted);
+}
+
+.fx-state--at-risk .fx-state-mark {
+  border: 0;
+  border-radius: 0;
+
+  background: var(--risk);
+  transform: rotate(45deg);
+}
+
+/* Shared status pills */
+
+.fx-status,
+.incident-state,
+.recovery-status-tag,
+.recovery-decision-tag,
+.recovery-plan-footer,
+.ripple-status-tag,
+.ripple-area-state,
+.passport-status-tag,
+.passport-agent-status,
+.passport-evidence-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.375rem 0.625rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+
+  color: var(--text-2);
+  background: rgba(148, 163, 184, 0.075);
+
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fx-status--positive {
+  color: var(--ok);
+  background: var(--status-positive-bg);
+  border-color: var(--status-positive-border);
+}
+
+.fx-status--warning,
+.ripple-area-state {
+  color: var(--warn);
+  background: var(--status-warning-bg);
+  border-color: var(--status-warning-border);
+}
+
+.fx-status--critical,
+.incident-state--at-risk,
+.recovery-decision-tag {
+  color: var(--risk);
+  background: var(--status-critical-bg);
+  border-color: var(--status-critical-border);
+}
+
+.fx-status--neutral,
+.incident-state--not-connected {
+  color: var(--text-2);
+  background: rgba(148, 163, 184, 0.075);
+  border-color: var(--glass-border);
+}
+
+.fx-status--unknown {
+  color: var(--text-2);
+  background: var(--surface-unknown);
+  border-style: dashed;
+}
+
+.recovery-status-tag,
+.ripple-status-tag,
+.passport-status-tag,
+.recovery-plan-footer,
+.passport-agent-status,
+.passport-evidence-status {
+  color: var(--accent);
+  background: var(--status-information-bg);
+  border-color: var(--status-information-border);
+}
+
+.incident-state {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* =========================================================
+   11. DISRUPTION DETAILS
+========================================================= */
+
+.incident-page {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding-top: 0;
+
+  color: var(--text);
+  background: transparent;
+}
+
+.incident-page-heading {
+  min-width: 0;
+}
+
+.incident-page-heading h1 {
+  margin: 0;
+}
+
+.incident-finding {
+  max-width: 65ch;
+}
+
+.incident-overview {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.incident-column {
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.incident-column + .incident-column {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--glass-border);
+}
+
+.incident-section-heading {
+  min-width: 0;
+  margin-bottom: 1.25rem;
+}
+
+.incident-section-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.incident-section-heading p {
+  margin: 0.375rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.incident-ledger {
+  width: 100%;
+  min-width: 0;
+}
+
+.incident-row {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 1rem;
+
+  padding: 0.75rem 0;
+
+  border: 0;
+  border-bottom: 1px solid var(--glass-hairline);
+  border-radius: 0;
+
+  background: transparent;
+}
+
+.incident-row:first-child {
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.incident-row:last-child {
+  border-bottom: 0;
+}
+
+.incident-row-label {
+  min-width: 0;
+
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.incident-row-value {
+  min-width: 0;
+
+  color: var(--text);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.incident-unknown {
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+
+  color: var(--text-2);
+
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 0.375rem;
+
+  background: var(--surface-unknown);
+
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.incident-open-questions {
+  padding: 1.5rem;
+}
+
+.incident-next-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+}
+
+.incident-next-step h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.125rem;
+}
+
+.incident-next-step p {
+  max-width: 65ch;
+  margin: 0.375rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   12. RECOVERY COMPARISON
+========================================================= */
+
+.recovery-page,
+.ripple-page,
+.passport-page {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding-bottom: 0;
+
+  color: var(--text);
+  background: transparent;
+}
+
+.recovery-intro,
+.ripple-intro,
+.passport-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.recovery-intro h2,
+.ripple-intro h2,
+.passport-intro h2 {
+  margin: 0;
+  font-size: clamp(2.25rem, 3.5vw, 3rem);
+}
+
+.recovery-intro p,
+.ripple-intro p,
+.passport-intro p {
+  max-width: 65ch;
+  margin: 0.5rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.recovery-kicker,
+.ripple-kicker,
+.passport-kicker {
+  color: var(--accent);
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.recovery-demo-badge,
+.ripple-demo-badge,
+.passport-demo-badge,
+.recovery-plan-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: 0.45rem 0.75rem;
+
+  border: 1px solid var(--status-information-border);
+  border-radius: 999px;
+
+  color: var(--accent);
+  background: var(--status-information-bg);
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Status banners retain their amber disclosure meaning. */
+
+.recovery-status-banner,
+.ripple-status-banner,
+.passport-status-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  border-color: var(--status-warning-border);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 210, 122, 0.08),
+      rgba(15, 25, 45, 0.36)
+    );
+}
+
+.recovery-status-icon,
+.ripple-status-icon,
+.passport-status-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 2.5rem;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--status-warning-border);
+  border-radius: 0.75rem;
+
+  color: var(--warn);
+  background: rgba(255, 210, 122, 0.09);
+}
+
+.recovery-status-copy,
+.ripple-status-copy,
+.passport-status-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.recovery-status-copy > span,
+.ripple-status-copy > span,
+.passport-status-copy > span {
+  display: block;
+  margin-bottom: 0.25rem;
+
+  color: var(--warn);
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.recovery-status-copy strong,
+.ripple-status-copy strong,
+.passport-status-copy strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.9375rem;
+}
+
+.recovery-status-copy p,
+.ripple-status-copy p,
+.passport-status-copy p {
+  margin: 0.25rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.recovery-section-heading,
+.ripple-section-heading,
+.passport-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.recovery-section-heading h3,
+.ripple-section-heading h3,
+.passport-section-heading h3 {
+  margin: 0.25rem 0;
+
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.recovery-section-heading p,
+.ripple-section-heading p,
+.passport-section-heading p {
+  margin: 0;
+
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.recovery-section-heading > svg,
+.ripple-section-heading > svg,
+.passport-section-heading > svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.recovery-context-grid,
+.ripple-context-grid,
+.passport-context-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.recovery-context-item,
+.ripple-context-item,
+.passport-context-item {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  padding: 0.875rem 0.875rem 0.625rem 0;
+}
+
+.recovery-context-item > span,
+.ripple-context-item > span,
+.passport-context-item > span {
+  color: var(--muted);
+
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.recovery-context-item strong,
+.ripple-context-item strong,
+.passport-context-item strong {
+  color: #ffffff;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+/* Recovery cards */
+
+.recovery-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.recovery-plan-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  padding: 1.25rem;
+
+  transition:
+    transform 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring);
+}
+
+.recovery-plan-card:hover {
+  border-color: rgba(0, 229, 255, 0.24);
+
+  background: var(--glass-bg-raised);
+
+  transform: translateY(-2px);
+}
+
+.recovery-plan-icon,
+.ripple-area-icon {
+  border: 1px solid var(--status-information-border);
+  border-radius: 0.75rem;
+
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.07);
+}
+
+.recovery-plan-strategy,
+.recovery-plan-details {
+  border-color: var(--glass-hairline);
+}
+
+.recovery-plan-strategy code {
+  color: #a8eaff;
+}
+
+.recovery-input-heading,
+.recovery-details-heading {
+  color: var(--muted);
+}
+
+.recovery-input-metrics svg {
+  color: var(--accent);
+}
+
+.recovery-input-metrics span,
+.recovery-detail-row span {
+  color: var(--text-2);
+}
+
+.recovery-input-metrics strong,
+.recovery-detail-row strong {
+  color: #ffffff;
+}
+
+.recovery-plan-footer {
+  color: var(--warn);
+  border: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.recovery-pending-dot {
+  background: var(--warn);
+}
+
+.recovery-results-table-wrapper,
+.passport-evidence-table-wrapper,
+.fx-data-table {
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 0.875rem;
+
+  background: rgba(15, 25, 45, 0.30);
+
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.recovery-results-table,
+.passport-evidence-table,
+.fx-data-table__table {
+  width: 100%;
+  min-width: 38rem;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  text-align: left;
+}
+
+.recovery-results-table th,
+.passport-evidence-table th,
+.fx-data-table__heading {
+  padding: 0.875rem 1rem;
+
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.035);
+
+  border-bottom: 1px solid var(--glass-hairline);
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.recovery-results-table td,
+.passport-evidence-table td,
+.fx-data-table__cell {
+  padding: 0.875rem 1rem;
+
+  color: var(--text-2);
+  border-bottom: 1px solid var(--glass-hairline);
+
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.recovery-results-table td:first-child,
+.passport-evidence-table td:first-child,
+.fx-data-table__cell:first-child {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.recovery-results-table td:not(:first-child) {
+  text-align: center;
+}
+
+.recovery-unavailable {
+  display: inline-flex;
+
+  padding: 0.3rem 0.45rem;
+
+  border: 1px dashed var(--glass-border);
+  border-radius: 0.4rem;
+
+  color: var(--text-2);
+  background: var(--surface-unknown);
+
+  font-size: 0.6875rem;
+  white-space: nowrap;
+}
+
+/* Decision panel */
+
+.recovery-decision-panel {
+  border-color: var(--status-critical-border);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 138, 140, 0.075),
+      rgba(15, 25, 45, 0.38)
+    );
+}
+
+.recovery-decision-icon {
+  color: var(--risk);
+  background: var(--status-critical-bg);
+}
+
+.recovery-decision-copy > span {
+  color: var(--risk);
+}
+
+.recovery-decision-copy h3 {
+  margin: 0.25rem 0;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.recovery-decision-copy p {
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.recovery-decision-tag {
+  color: var(--risk);
+  background: var(--status-critical-bg);
+  border-color: var(--status-critical-border);
+}
+
+/* =========================================================
+   13. RIPPLEGUARD
+========================================================= */
+
+.ripple-area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ripple-area-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    transform 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring);
+}
+
+.ripple-area-card:hover {
+  border-color: rgba(0, 229, 255, 0.22);
+  background: var(--glass-bg-raised);
+  transform: translateY(-2px);
+}
+
+.ripple-area-state {
+  color: var(--warn);
+}
+
+.ripple-area-card h4 {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.ripple-area-card > p {
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+
+.ripple-area-footer {
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.ripple-area-footer span {
+  color: var(--text-2);
+}
+
+.ripple-area-footer strong {
+  color: var(--warn);
+}
+
+.ripple-findings-empty {
+  min-height: 15rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+
+  border-style: dashed;
+  border-color: var(--status-warning-border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 210, 122, 0.045),
+      rgba(15, 25, 45, 0.36)
+    );
+
+  text-align: center;
+}
+
+.ripple-findings-icon {
+  color: var(--warn);
+  border-color: var(--status-warning-border);
+  background: var(--status-warning-bg);
+}
+
+.ripple-findings-label,
+.ripple-findings-empty > strong {
+  color: var(--warn);
+}
+
+.ripple-findings-empty h4 {
+  color: #ffffff;
+  font-size: 1.0625rem;
+}
+
+.ripple-findings-empty p {
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.ripple-limitations-table {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.ripple-limitation-row {
+  border-bottom: 1px solid var(--glass-hairline);
+}
+
+.ripple-limitation-row span {
+  color: var(--text-2);
+}
+
+.ripple-limitation-row strong {
+  color: #ffffff;
+}
+
+.ripple-information-note {
+  border: 1px solid rgba(0, 229, 255, 0.10);
+  border-radius: 0.75rem;
+
+  background: rgba(0, 229, 255, 0.045);
+}
+
+.ripple-information-note svg {
+  color: var(--accent);
+}
+
+.ripple-information-note p {
+  color: var(--text-2);
+}
+
+/* =========================================================
+   14. DECISION PASSPORT
+========================================================= */
+
+.passport-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.passport-summary-card {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.passport-summary-card > span {
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.passport-summary-card > strong {
+  margin-top: 0.875rem;
+
+  color: var(--warn);
+  font-size: 1rem;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+.passport-summary-card > p {
+  margin: 0.375rem 0 0;
+
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.passport-record-list,
+.passport-agent-list,
+.passport-review-list {
+  padding: 0.5rem 1.25rem;
+}
+
+.passport-record-row,
+.passport-agent-row,
+.passport-review-row {
+  border-bottom: 1px solid var(--glass-hairline);
+}
+
+.passport-record-row:last-child,
+.passport-agent-row:last-child,
+.passport-review-row:last-child {
+  border-bottom: 0;
+}
+
+.passport-record-row span,
+.passport-review-row span {
+  color: var(--text-2);
+}
+
+.passport-record-row strong,
+.passport-review-row strong {
+  color: #ffffff;
+}
+
+.passport-agent-index {
+  border: 1px solid var(--status-information-border);
+  border-radius: 0.625rem;
+
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.07);
+}
+
+.passport-agent-info strong {
+  color: #ffffff;
+}
+
+.passport-agent-info span {
+  color: var(--text-2);
+}
+
+.passport-agent-status {
+  color: var(--warn);
+  border: 1px solid var(--status-warning-border);
+  background: var(--status-warning-bg);
+}
+
+.passport-evidence-status {
+  border: 1px solid transparent;
+}
+
+.passport-evidence-status.available {
+  color: var(--ok);
+  border-color: var(--status-positive-border);
+  background: var(--status-positive-bg);
+}
+
+.passport-evidence-status.unavailable {
+  color: var(--warn);
+  border-color: var(--status-warning-border);
+  background: var(--status-warning-bg);
+}
+
+.passport-review-banner {
+  border-color: var(--status-warning-border);
+  background: rgba(255, 210, 122, 0.045);
+}
+
+.passport-review-icon {
+  color: var(--warn);
+  background: var(--status-warning-bg);
+}
+
+.passport-review-banner strong {
+  color: #ffffff;
+}
+
+.passport-review-banner p {
+  color: var(--text-2);
+}
+
+.passport-integrity-note {
+  border-color: rgba(0, 229, 255, 0.15);
+  background: rgba(0, 229, 255, 0.035);
+}
+
+.passport-integrity-note > svg {
+  color: var(--accent);
+}
+
+.passport-integrity-note strong {
+  color: #ffffff;
+}
+
+.passport-integrity-note p {
+  color: var(--text-2);
+}
+
+/* Agent index numbers remain: they identify agent records. */
+
+/* =========================================================
+   15. PROFILE
+========================================================= */
+
+.fx-profile-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.fx-profile-heading {
+  margin-bottom: 1.5rem;
+}
+
+.fx-profile-heading h1 {
+  margin: 0;
+}
+
+.fx-profile-finding {
+  margin-top: 0.5rem;
+}
+
+.fx-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  align-items: stretch;
+}
+
+.fx-profile-column {
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.fx-profile-column + .fx-profile-column {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--glass-border);
+}
+
+.fx-profile-section-heading {
+  margin-bottom: 1.25rem;
+}
+
+.fx-profile-section-heading h2 {
+  color: #ffffff;
+  font-size: 1.125rem;
+}
+
+.fx-profile-section-heading p {
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.fx-profile-field,
+.fx-profile-preference {
+  border-color: var(--glass-hairline);
+}
+
+.fx-profile-field label,
+.fx-profile-preference label {
+  color: var(--text-2);
+}
+
+.fx-profile-input,
+.fx-profile-select {
+  min-height: 2.75rem;
+
+  padding: 0.625rem 0.75rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-input);
+
+  color: #ffffff;
+  background: rgba(7, 15, 29, 0.58);
+
+  font-size: 0.8125rem;
+}
+
+.fx-profile-input:disabled,
+.fx-profile-select:disabled {
+  color: var(--text-2);
+  opacity: 0.9;
+}
+
+.fx-profile-input:focus-visible,
+.fx-profile-select:focus-visible {
+  outline: 0;
+
+  border-color: var(--accent);
+  box-shadow: var(--focus-ring);
+}
+
+.fx-profile-preference p,
+.fx-profile-footnote {
+  color: var(--text-2);
+}
+
+.fx-profile-actions {
+  border-color: var(--glass-hairline);
+}
+
+.fx-profile-saved {
+  padding: 0.875rem 1rem;
+
+  border: 1px solid var(--status-positive-border);
+  border-radius: 0.75rem;
+
+  color: var(--ok);
+  background: var(--status-positive-bg);
+}
+
+/* =========================================================
+   16. AUTHENTICATION â€” SIGN IN / CREATE ACCOUNT
+========================================================= */
+
+.quiet-auth {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      ellipse at 16% 15%,
+      rgba(0, 105, 255, 0.17),
+      transparent 43%
+    ),
+    radial-gradient(
+      ellipse at 85% 78%,
+      rgba(0, 229, 255, 0.10),
+      transparent 42%
+    ),
+    #050811;
+}
+
+.quiet-auth__header {
+  min-height: 4.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.25rem 3rem;
+}
+
+.quiet-auth__wordmark {
+  color: #ffffff;
+
+  font-family: var(--font-editorial);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
+.quiet-auth__environment {
+  display: none !important;
+}
+
+.quiet-auth__main {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2.5rem 1.5rem;
+}
+
+.quiet-auth__content {
+  width: 100%;
+  max-width: 33rem;
+
+  margin-inline: auto;
+  padding: 2.25rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  border-radius: 1.5rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 42, 69, 0.68),
+      rgba(11, 20, 37, 0.65)
+    );
+
+  -webkit-backdrop-filter: blur(28px) saturate(155%);
+  backdrop-filter: blur(28px) saturate(155%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 25px 70px rgba(0, 0, 0, 0.40);
+}
+
+.quiet-auth__intro {
+  margin-bottom: 1.5rem;
+}
+
+.quiet-auth__eyebrow {
+  margin: 0 0 0.75rem;
+
+  color: var(--accent);
+
+  font-size: 0.6875rem;
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.quiet-auth__title {
+  margin: 0;
+
+  color: #ffffff;
+  font-family: var(--font-editorial);
+  font-size: clamp(2.75rem, 6vw, 3.5rem);
+  font-weight: 600;
+
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.quiet-auth__description {
+  margin: 0.75rem 0 0;
+
+  color: var(--text-2);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Segmented sign-in / create-account control */
+
+.quiet-auth__mode-switch {
+  display: flex;
+  align-items: stretch;
+  gap: 0.375rem;
+
+  margin-top: 1.5rem;
+  padding: 0.375rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 0.875rem;
+
+  background: rgba(4, 12, 25, 0.55);
+}
+
+.quiet-auth__mode-tab {
+  position: relative;
+
+  min-width: 0;
+  min-height: 2.625rem;
+  flex: 1;
+
+  padding: 0.625rem 0.75rem;
+
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+
+  color: var(--text-2);
+  background: transparent;
+
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring);
+}
+
+.quiet-auth__mode-tab.is-active {
+  color: #ffffff;
+
+  border-color: rgba(0, 229, 255, 0.16);
+
+  background:
+    linear-gradient(
+      110deg,
+      rgba(0, 229, 255, 0.16),
+      rgba(0, 136, 255, 0.08)
+    );
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.quiet-auth__mode-tab.is-active::after {
+  content: none;
+}
+
+/* Authentication form */
+
+.quiet-auth__form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-top: 1.5rem;
+}
+
+.quiet-auth__field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiet-auth__field label {
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.quiet-auth__field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 3rem;
+
+  padding: 0.75rem 0.875rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--radius-input);
+
+  color: #ffffff;
+  background: rgba(5, 13, 27, 0.58);
+
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+
+  transition:
+    border-color 180ms var(--ease-spring),
+    box-shadow 180ms var(--ease-spring),
+    background 180ms var(--ease-spring);
+}
+
+.quiet-auth__field input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.quiet-auth__field input:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+.quiet-auth__field input:focus-visible {
+  outline: 0;
+
+  border-color: var(--accent);
+  background: rgba(5, 13, 27, 0.78);
+
+  box-shadow: var(--focus-ring);
+}
+
+.quiet-auth__field input:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.quiet-auth__password {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  border: 0;
+}
+
+.quiet-auth__password input {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.quiet-auth__password input:focus-visible {
+  outline: 0;
+}
+
+.quiet-auth__password-toggle {
+  min-width: 3rem;
+  min-height: 2.5rem;
+
+  margin-left: 0.375rem;
+  padding: 0 0.5rem;
+
+  border: 1px solid var(--glass-border);
+  border-radius: 0.625rem;
+
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.045);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.quiet-auth__password-toggle:hover {
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.quiet-auth__field-note {
+  margin: 0;
+
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.quiet-auth__error {
+  margin: 0;
+  padding: 0.75rem 0.875rem;
+
+  border: 1px solid var(--status-critical-border);
+  border-radius: 0.625rem;
+
+  color: var(--risk);
+  background: var(--status-critical-bg);
+
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Primary authentication action */
+
+.quiet-auth__submit {
+  width: 100%;
+  min-height: 3rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  margin-top: 0.5rem;
+  padding: 0 1.125rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: var(--radius-button);
+
+  color: #001018;
+  background: var(--cta-metallic);
+
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: var(--cta-glow);
+
+  transition:
+    background 180ms var(--ease-spring),
+    box-shadow 180ms var(--ease-spring),
+    transform 180ms var(--ease-spring);
+}
+
+.quiet-auth__submit:hover {
+  background: var(--cta-metallic-hover);
+  box-shadow: var(--cta-glow-hover);
+  transform: translateY(-1px);
+}
+
+.quiet-auth__submit:active {
+  background: var(--cta-metallic-active);
+  transform: translateY(0);
+}
+
+.quiet-auth__submit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.quiet-auth__submit span {
+  font-size: 1.125rem;
+}
+
+.quiet-auth__demo-link {
+  min-height: 2.5rem;
+
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: 0.5rem;
+  padding: 0;
+
+  border: 0;
+
+  color: var(--text-2);
+  background: transparent;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.quiet-auth__demo-link:hover {
+  color: var(--accent);
+}
+
+.quiet-auth__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid var(--glass-hairline);
+}
+
+.quiet-auth__notes p {
+  margin: 0;
+
+  color: var(--text-2);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Authentication workflow trace. Its numbered nodes remain. */
+
+.quiet-auth__trace {
+  width: 100%;
+
+  padding: 1.25rem 2rem 1.5rem;
+
+  border-top: 1px solid var(--glass-hairline);
+
+  background: rgba(5, 10, 20, 0.25);
+
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.quiet-auth__trace-list {
+  max-width: 85rem;
+  margin: 0 auto;
+}
+
+.quiet-auth__trace-list::before {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.quiet-auth__trace-node {
+  border-color: var(--muted);
+  background: #0b1423;
+}
+
+.quiet-auth__trace-item--current .quiet-auth__trace-node {
+  border-color: var(--accent);
+  background: var(--accent);
+
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+}
+
+.quiet-auth__trace-context,
+.quiet-auth__trace-number,
+.quiet-auth__trace-label {
+  color: var(--text-2);
+}
+
+.quiet-auth__trace-item--current .quiet-auth__trace-context,
+.quiet-auth__trace-item--current .quiet-auth__trace-label {
+  color: #ffffff;
+}
+
+.quiet-auth__trace-item--current .quiet-auth__trace-context {
+  color: var(--accent);
+}
+
+/* Keep human-approval information; remove duplicate environment/data labels. */
+
+.quiet-auth__footer span:nth-child(-n + 2) {
+  display: none !important;
+}
+
+.quiet-auth__footer {
+  min-height: 3.5rem;
+
+  justify-content: center;
+
+  border-top: 1px solid var(--glass-hairline);
+
+  color: var(--text-2);
+  background: rgba(5, 10, 20, 0.24);
+}
+
+/* =========================================================
+   17. SHARED INPUTS, SELECTS AND DIALOGS
+========================================================= */
+
+.fx-dashboard-root input:not([type="checkbox"]):not([type="radio"]),
+.fx-dashboard-root select,
+.fx-dashboard-root textarea {
+  color: #ffffff;
+  background-color: rgba(5, 13, 27, 0.52);
+  border-color: var(--glass-border);
+}
+
+.fx-dashboard-root input:focus-visible,
+.fx-dashboard-root select:focus-visible,
+.fx-dashboard-root textarea:focus-visible {
+  outline: 0;
+  border-color: var(--accent);
+  box-shadow: var(--focus-ring);
+}
+
+.fx-dashboard-root input::placeholder,
+.fx-dashboard-root textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+dialog,
+[role="dialog"] {
+  color: var(--text);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+
+  background: var(--glass-bg-raised);
+
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+  backdrop-filter: blur(26px) saturate(150%);
+
+  box-shadow: var(--glass-shadow-floating);
+}
+
+dialog::backdrop {
+  background: var(--overlay-scrim);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+/* =========================================================
+   18. BUTTON INTERACTIONS
+========================================================= */
+
+.fx-primary-button,
+.fx-button--primary,
+.incident-primary-button,
+.recovery-continue-button,
+.ripple-continue-button,
+.passport-return-button {
+  min-height: 2.875rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  padding: 0.75rem 1.375rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: var(--radius-button);
+
+  color: #001018;
+  background: var(--cta-metallic);
+
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  text-align: center;
+  cursor: pointer;
+
+  box-shadow: var(--cta-glow);
+
+  transition:
+    background 180ms var(--ease-spring),
+    box-shadow 180ms var(--ease-spring),
+    transform 180ms var(--ease-spring),
+    opacity 180ms var(--ease-spring);
+}
+
+.fx-page-action {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.fx-control-tower .fx-primary-button {
+  min-width: 15rem;
+  border-radius: var(--radius-button);
+  color: #001018;
+  background: var(--cta-metallic);
+}
+
+.incident-primary-button {
+  min-width: 17.5rem;
+  justify-content: space-between;
+}
+
+.recovery-back-button,
+.ripple-back-button,
+.passport-back-button,
+.fx-profile-cancel {
+  min-height: 2.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.5rem 0.75rem;
+
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.025);
+
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color 180ms var(--ease-spring),
+    background 180ms var(--ease-spring),
+    border-color 180ms var(--ease-spring);
+}
+
+.recovery-navigation,
+.ripple-navigation,
+.passport-navigation {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-sidebar-link:hover:not(.is-active) {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .fx-account-trigger:hover {
+    border-color: rgba(0, 229, 255, 0.22);
+    background: rgba(0, 229, 255, 0.075);
+  }
+
+  .fx-sidebar-signout:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .fx-primary-button:hover:not(:disabled),
+  .fx-button--primary:hover:not(:disabled),
+  .incident-primary-button:hover:not(:disabled),
+  .recovery-continue-button:hover:not(:disabled),
+  .ripple-continue-button:hover:not(:disabled),
+  .passport-return-button:hover:not(:disabled) {
+    background: var(--cta-metallic-hover);
+    box-shadow: var(--cta-glow-hover);
+    transform: translateY(-1px);
+  }
+
+  .recovery-back-button:hover,
+  .ripple-back-button:hover,
+  .passport-back-button:hover,
+  .fx-profile-cancel:hover {
+    color: var(--accent);
+    border-color: var(--glass-border);
+    background: rgba(0, 229, 255, 0.055);
+  }
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button:focus-visible {
+  outline-color: var(--accent);
+}
+
+/* =========================================================
+   19. FOOTERS
+========================================================= */
+
+.fx-dashboard-footer,
+.dashboard-footer {
+  min-height: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  padding: 0.875rem 0;
+
+  border-top: 1px solid var(--glass-hairline);
+
+  color: var(--muted);
+  background: transparent;
+
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   20. RESPONSIVE LAYOUT
+========================================================= */
+
+@media (max-width: 75rem) {
+  .fx-main-content {
+    padding: 2.5rem;
+  }
+
+  .fx-topbar {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+
+  .fx-workflow-spine-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .recovery-plan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .passport-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 60rem) {
+  .fx-situation-line {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fx-situation-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .fx-situation-item:nth-child(3),
+  .fx-situation-item:nth-child(4) {
+    border-top: 1px solid var(--glass-hairline);
+  }
+
+  .fx-brief-grid,
+  .fx-progress-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .recovery-context-grid,
+  .ripple-context-grid,
+  .passport-context-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .incident-overview {
+    gap: 1rem;
+  }
+
+  .incident-column + .incident-column {
+    padding-left: 1.25rem;
+  }
+
+  .fx-profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .fx-profile-column + .fx-profile-column {
+    padding: 1.5rem;
+    border-left: 1px solid var(--glass-border);
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .fx-sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+    min-height: 0;
+
+    padding: 1rem 1.25rem;
+
+    overflow: visible;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--glass-hairline);
+  }
+
+  .fx-sidebar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .fx-sidebar-navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.375rem;
+  }
+
+  .fx-sidebar-link {
+    min-height: 2.75rem;
+    padding: 0.625rem;
+  }
+
+  .fx-sidebar-bottom {
+    margin-top: 1rem;
+  }
+
+  .fx-dashboard-content {
+    margin-left: 0;
+    min-height: auto;
+  }
+
+  .fx-dashboard-content::before {
+    inset: 0;
+  }
+
+  .fx-topbar {
+    position: relative;
+    min-height: 3.75rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .fx-main-content {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  .fx-workflow-spine-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fx-workflow-spine-item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-limitations,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-list,
+  .passport-integrity-note,
+  .fx-profile-column {
+    padding: 1.125rem;
+  }
+
+  .fx-dashboard-footer,
+  .dashboard-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .incident-overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .incident-column + .incident-column {
+    padding: 1.125rem;
+    border-left: 1px solid var(--glass-border);
+  }
+
+  .incident-next-step {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .incident-primary-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .recovery-intro,
+  .ripple-intro,
+  .passport-intro {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .recovery-status-banner,
+  .ripple-status-banner,
+  .passport-status-banner,
+  .recovery-decision-panel {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .recovery-plan-grid,
+  .ripple-area-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .recovery-navigation,
+  .ripple-navigation,
+  .passport-navigation {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .recovery-back-button,
+  .recovery-continue-button,
+  .ripple-back-button,
+  .ripple-continue-button,
+  .passport-back-button,
+  .passport-return-button {
+    width: 100%;
+  }
+
+  .passport-agent-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .passport-agent-info {
+    flex-basis: calc(100% - 3.5rem);
+  }
+
+  .passport-agent-status {
+    margin-left: 3rem;
+  }
+
+  .quiet-auth__header {
+    min-height: 4rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .quiet-auth__main {
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  .quiet-auth__content {
+    max-width: 34rem;
+    padding: 1.5rem;
+    border-radius: 1.125rem;
+  }
+
+  .quiet-auth__title {
+    font-size: 2.75rem;
+  }
+
+  .quiet-auth__trace {
+    padding: 1.25rem;
+  }
+
+  .quiet-auth__trace-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .quiet-auth__trace-list::before {
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    right: auto;
+
+    width: 1px;
+    height: auto;
+  }
+
+  .quiet-auth__trace-item {
+    min-height: 1.5rem;
+
+    align-items: flex-start;
+    gap: 0.25rem;
+
+    text-align: left;
+  }
+
+  .quiet-auth__trace-node {
+    position: absolute;
+    top: 0.125rem;
+    left: -1.5rem;
+    margin: 0;
+  }
+
+  .quiet-auth__footer {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 30rem) {
+  .fx-main-content {
+    padding: 1.25rem 1rem 1.75rem;
+  }
+
+  .fx-sidebar-navigation,
+  .fx-workflow-spine-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fx-workflow-spine-item:last-child {
+    grid-column: auto;
+  }
+
+  .fx-situation-line {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fx-situation-item {
+    min-height: 5.5rem;
+    padding: 0.875rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--glass-hairline);
+  }
+
+  .fx-situation-item:last-child {
+    border-bottom: 0;
+  }
+
+  .fx-situation-item:nth-child(3),
+  .fx-situation-item:nth-child(4) {
+    border-top: 0;
+  }
+
+  .fx-situation-value {
+    font-size: 2rem;
+  }
+
+  .fx-ledger-row,
+  .fx-ledger-row:first-child,
+  .incident-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.375rem;
+  }
+
+  .recovery-context-grid,
+  .ripple-context-grid,
+  .passport-context-grid,
+  .ripple-limitations-table,
+  .passport-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .recovery-input-metrics > div {
+    grid-template-columns: 1.0625rem minmax(0, 1fr);
+  }
+
+  .recovery-input-metrics strong {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .recovery-results-table,
+  .passport-evidence-table {
+    min-width: 36rem;
+  }
+
+  .passport-review-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .quiet-auth__content {
+    padding: 1.25rem;
+  }
+
+  .quiet-auth__title {
+    font-size: 2.35rem;
+  }
+}
+
+/* =========================================================
+   21. ACCESSIBILITY AND FALLBACKS
+========================================================= */
+
+@supports not (backdrop-filter: blur(1px)) {
+  .fx-sidebar,
+  .fx-topbar,
+  .fx-glass,
+  .fx-panel,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+
+  .fx-profile-column,
+  .quiet-auth__content,
+  .fx-toast {
+    background: #0c1526;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .fx-sidebar,
+  .fx-topbar,
+  .fx-glass,
+  .fx-panel,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+
+  .incident-column,
+  .incident-open-questions,
+  .incident-next-step,
+
+  .recovery-status-banner,
+  .recovery-context,
+  .recovery-plan-card,
+  .recovery-decision-panel,
+  .recovery-information-panel,
+
+  .ripple-status-banner,
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-findings-empty,
+  .ripple-limitations,
+
+  .passport-status-banner,
+  .passport-context,
+  .passport-summary-card,
+  .passport-record-list,
+  .passport-agent-list,
+  .passport-review-banner,
+  .passport-review-list,
+  .passport-integrity-note,
+
+  .fx-profile-column,
+  .quiet-auth__content,
+  .fx-toast {
+    background: #0c1526;
+
+    box-shadow: none;
+
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .fx-sidebar,
+  .fx-topbar,
+  .fx-glass,
+  .fx-panel,
+  .fx-workflow-spine,
+  .fx-situation-line,
+  .fx-brief-column,
+  .fx-progress-column,
+  .fx-system-status,
+
+  .incident-column,
+  .recovery-plan-card,
+  .ripple-area-card,
+  .passport-summary-card,
+  .fx-profile-column,
+  .quiet-auth__content {
+    background: #0c1526;
+
+    border-color: rgba(255, 255, 255, 0.28);
+
+    box-shadow: none;
+
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  button:active {
+    transform: none !important;
+  }
+}
+/* ==================================================
+   FORESIGHTX â€” DASHBOARD LAYOUT CORRECTION
+   ================================================== */
+
+@media (min-width: 900px) {
+  .fx-dashboard-root {
+    display: grid !important;
+    grid-template-columns: 240px minmax(0, 1fr) !important;
+    align-items: start;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .fx-dashboard-root > .fx-sidebar {
+    position: sticky !important;
+    top: 0;
+    grid-column: 1;
+    grid-row: 1;
+    width: 240px;
+    min-width: 0;
+    height: 100vh;
+    align-self: start;
+    box-sizing: border-box;
+  }
+
+  .fx-dashboard-root > .fx-dashboard-content {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+  }
+}

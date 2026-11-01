@@ -1,17 +1,14 @@
-/* =========================================
-   FORESIGHTX — RIPPLEGUARD
-   Downstream impact intelligence
-========================================= */
+/* FORESIGHTX - RIPPLEGUARD
+   Obsidian glass visual system
+*/
 
 .ripple-page {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 23px;
-
   padding-bottom: 10px;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
 }
 
 .ripple-page *,
@@ -32,9 +29,7 @@
   cursor: pointer;
 }
 
-/* -----------------------------------------
-   PAGE INTRODUCTION
------------------------------------------ */
+/* PAGE INTRODUCTION */
 
 .ripple-intro {
   display: flex;
@@ -45,7 +40,7 @@
 
 .ripple-eyebrow,
 .ripple-kicker {
-  color: var(--subtle);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -53,71 +48,89 @@
 
 .ripple-intro h2 {
   margin: 8px 0 5px;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-family: var(--font-display);
   font-size: clamp(23px, 2.5vw, 30px);
   line-height: 1.2;
-}
-
-.ripple-intro p {
-  max-width: 630px;
-  margin-bottom: 0;
-
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.65;
 }
 
 .ripple-demo-badge,
 .ripple-status-tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   flex-shrink: 0;
-
-  padding: 7px 10px;
-
-  border: 1px solid rgba(168, 202, 212, 0.16);
-  border-radius: 5px;
-
-  color: var(--cyan);
-  background: rgba(168, 202, 212, 0.055);
-
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.6px;
 }
 
-/* -----------------------------------------
-   ASSESSMENT STATUS
------------------------------------------ */
+.ripple-demo-badge {
+  color: var(--accent-cyan, #00E5FF);
+}
+
+.ripple-status-tag {
+  color: var(--status-warning, #D5B17E);
+}
+
+.ripple-demo-badge::before,
+.ripple-status-tag::before {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  display: inline-block;
+  border-radius: 50%;
+  content: "";
+}
+
+.ripple-demo-badge::before {
+  background: var(--accent-cyan, #00E5FF);
+}
+
+.ripple-status-tag::before {
+  background: var(--status-warning, #D5B17E);
+}
+
+/* ASSESSMENT STATUS */
 
 .ripple-status-banner {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 15px;
-
   padding: 17px 19px;
-
-  border: 1px solid rgba(213, 177, 126, 0.23);
+  border: 1px solid rgba(213, 177, 126, 0.22);
   border-radius: 9px;
-
-  background: rgba(213, 177, 126, 0.045);
+  background:
+    linear-gradient(
+      105deg,
+      rgba(213, 177, 126, 0.075),
+      rgba(213, 177, 126, 0.018) 70%
+    ),
+    rgba(8, 12, 14, 0.76);
+  box-shadow:
+    inset 2px 0 0 rgba(213, 177, 126, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 12px 28px rgba(0, 0, 0, 0.17);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
 }
 
 .ripple-status-icon {
   width: 39px;
   height: 39px;
   flex-shrink: 0;
-
   display: grid;
   place-items: center;
-
+  border: 1px solid rgba(213, 177, 126, 0.2);
   border-radius: 8px;
-
-  color: var(--amber);
-  background: rgba(213, 177, 126, 0.1);
+  color: var(--status-warning, #D5B17E);
+  background: rgba(213, 177, 126, 0.075);
 }
 
 .ripple-status-copy {
@@ -128,9 +141,7 @@
 .ripple-status-copy > span {
   display: block;
   margin-bottom: 3px;
-
-  color: var(--amber);
-
+  color: var(--status-warning, #D5B17E);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -138,41 +149,30 @@
 
 .ripple-status-copy strong {
   display: block;
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-size: 14px;
 }
 
 .ripple-status-copy p {
   margin: 3px 0 0;
-
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 12px;
   line-height: 1.6;
 }
 
-.ripple-status-tag {
-  color: var(--amber);
-  border-color: rgba(213, 177, 126, 0.22);
-  background: rgba(213, 177, 126, 0.06);
-}
-
-/* -----------------------------------------
-   SHARED SECTION HEADINGS
------------------------------------------ */
+/* SHARED SECTION HEADINGS */
 
 .ripple-section-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-
   margin-bottom: 14px;
 }
 
 .ripple-section-heading h3 {
   margin: 4px 0 2px;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 600;
@@ -180,53 +180,56 @@
 
 .ripple-section-heading p {
   margin: 0;
-
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 12px;
   line-height: 1.6;
 }
 
 .ripple-section-heading > svg {
   flex-shrink: 0;
-  color: var(--cyan);
+  color: var(--accent-cyan, #00E5FF);
+  opacity: 0.8;
 }
 
-/* -----------------------------------------
-   SHIPMENT CONTEXT
------------------------------------------ */
+/* SHIPMENT CONTEXT */
 
 .ripple-context {
   min-width: 0;
-
   padding: 19px;
-
-  border: 1px solid rgba(164, 184, 194, 0.1);
+  border: 1px solid rgba(164, 184, 194, 0.14);
   border-radius: 9px;
-
-  background: var(--panel);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.027),
+      transparent 48%
+    ),
+    rgba(10, 15, 18, 0.76);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
 }
 
 .ripple-context-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-
-  border-top: 1px solid rgba(164, 184, 194, 0.1);
+  border-top: 1px solid rgba(164, 184, 194, 0.13);
 }
 
 .ripple-context-item {
   min-width: 0;
-
   display: flex;
   flex-direction: column;
   gap: 5px;
-
   padding: 14px 12px 10px 0;
 }
 
 .ripple-context-item > span {
-  color: var(--subtle);
-
+  color: var(--text-secondary, #AAB6BC);
+  opacity: 0.76;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.7px;
@@ -234,15 +237,12 @@
 
 .ripple-context-item strong {
   overflow-wrap: anywhere;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-size: 13px;
   font-weight: 600;
 }
 
-/* -----------------------------------------
-   ASSESSMENT SCOPE
------------------------------------------ */
+/* ASSESSMENT SCOPE */
 
 .ripple-scope-section,
 .ripple-findings-section {
@@ -256,26 +256,44 @@
 }
 
 .ripple-area-card {
+  position: relative;
+  overflow: hidden;
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-
   padding: 18px;
-
-  border: 1px solid rgba(164, 184, 194, 0.12);
+  border: 1px solid rgba(164, 184, 194, 0.13);
   border-radius: 9px;
-
-  background: var(--panel);
-
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.024),
+      transparent 58%
+    ),
+    rgba(10, 15, 18, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 8px 24px rgba(0, 0, 0, 0.13);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  backdrop-filter: blur(15px) saturate(120%);
   transition:
     border-color 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .ripple-area-card:hover {
-  border-color: rgba(168, 202, 212, 0.25);
-  background: #151f26;
+  border-color: rgba(0, 229, 255, 0.25);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(0, 229, 255, 0.035),
+      transparent 60%
+    ),
+    rgba(12, 18, 21, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 12px 30px rgba(0, 0, 0, 0.19);
 }
 
 .ripple-area-top {
@@ -283,7 +301,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-
   margin-bottom: 14px;
 }
 
@@ -291,20 +308,16 @@
   width: 35px;
   height: 35px;
   flex-shrink: 0;
-
   display: grid;
   place-items: center;
-
-  border: 1px solid rgba(168, 202, 212, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.16);
   border-radius: 7px;
-
-  color: var(--cyan);
-  background: rgba(168, 202, 212, 0.06);
+  color: var(--accent-cyan, #00E5FF);
+  background: rgba(0, 229, 255, 0.045);
 }
 
 .ripple-area-state {
-  color: var(--amber);
-
+  color: var(--status-warning, #D5B17E);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -312,8 +325,7 @@
 
 .ripple-area-card h4 {
   margin: 0 0 7px;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 600;
@@ -321,10 +333,8 @@
 
 .ripple-area-card > p {
   flex: 1;
-
   margin: 0 0 16px;
-
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 12px;
   line-height: 1.65;
 }
@@ -334,65 +344,60 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-
   padding-top: 12px;
-
-  border-top: 1px solid rgba(164, 184, 194, 0.09);
+  border-top: 1px solid rgba(164, 184, 194, 0.12);
 }
 
 .ripple-area-footer span {
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 10px;
 }
 
 .ripple-area-footer strong {
-  color: var(--amber);
+  color: var(--status-warning, #D5B17E);
   font-size: 10px;
   font-weight: 600;
   text-align: right;
 }
 
-/* -----------------------------------------
-   DOWNSTREAM RISK FINDINGS
------------------------------------------ */
+/* DOWNSTREAM RISK FINDINGS */
 
 .ripple-findings-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   min-height: 245px;
-
   padding: 28px 22px;
-
-  border: 1px dashed rgba(213, 177, 126, 0.22);
+  border: 1px solid rgba(213, 177, 126, 0.17);
   border-radius: 9px;
-
-  background: rgba(213, 177, 126, 0.025);
-
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(213, 177, 126, 0.055),
+      transparent 65%
+    ),
+    rgba(8, 12, 14, 0.66);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 12px 28px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
 .ripple-findings-icon {
   width: 45px;
   height: 45px;
-
   display: grid;
   place-items: center;
-
   margin-bottom: 15px;
-
-  border: 1px solid rgba(213, 177, 126, 0.17);
-  border-radius: 50%;
-
-  color: var(--amber);
-  background: rgba(213, 177, 126, 0.07);
+  border: 1px solid rgba(213, 177, 126, 0.2);
+  border-radius: 8px;
+  color: var(--status-warning, #D5B17E);
+  background: rgba(213, 177, 126, 0.06);
 }
 
 .ripple-findings-label {
-  color: var(--amber);
-
+  color: var(--status-warning, #D5B17E);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -400,8 +405,7 @@
 
 .ripple-findings-empty h4 {
   margin: 8px 0;
-
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
@@ -410,62 +414,62 @@
 .ripple-findings-empty p {
   max-width: 560px;
   margin: 0;
-
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 12px;
   line-height: 1.7;
 }
 
 .ripple-findings-empty > strong {
   margin-top: 15px;
-
-  color: var(--amber);
+  color: var(--status-warning, #D5B17E);
   font-size: 11px;
   font-weight: 700;
 }
 
-/* -----------------------------------------
-   DATA LIMITATIONS
------------------------------------------ */
+/* DATA LIMITATIONS */
 
 .ripple-limitations {
   min-width: 0;
-
   padding: 19px;
-
-  border: 1px solid rgba(164, 184, 194, 0.1);
+  border: 1px solid rgba(164, 184, 194, 0.14);
   border-radius: 9px;
-
-  background: var(--panel);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.022),
+      transparent 58%
+    ),
+    rgba(9, 14, 17, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 10px 26px rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
 }
 
 .ripple-limitations-table {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  border-top: 1px solid rgba(164, 184, 194, 0.1);
+  border-top: 1px solid rgba(164, 184, 194, 0.13);
 }
 
 .ripple-limitation-row {
   min-width: 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-
   padding: 12px 15px 12px 0;
-
-  border-bottom: 1px solid rgba(164, 184, 194, 0.07);
+  border-bottom: 1px solid rgba(164, 184, 194, 0.09);
 }
 
 .ripple-limitation-row span {
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 11px;
 }
 
 .ripple-limitation-row strong {
-  color: var(--text);
+  color: var(--text-primary, #F1F5F6);
   font-size: 10px;
   font-weight: 600;
   text-align: right;
@@ -475,33 +479,26 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-
   margin-top: 16px;
   padding: 13px;
-
-  border-radius: 7px;
-
-  background: rgba(168, 202, 212, 0.045);
+  border-left: 2px solid var(--accent-cyan, #00E5FF);
+  background: rgba(0, 229, 255, 0.035);
 }
 
 .ripple-information-note svg {
   flex-shrink: 0;
   margin-top: 1px;
-
-  color: var(--cyan);
+  color: var(--accent-cyan, #00E5FF);
 }
 
 .ripple-information-note p {
   margin: 0;
-
-  color: var(--muted);
+  color: var(--text-secondary, #AAB6BC);
   font-size: 11px;
   line-height: 1.7;
 }
 
-/* -----------------------------------------
-   WORKFLOW NAVIGATION
------------------------------------------ */
+/* WORKFLOW NAVIGATION */
 
 .ripple-navigation {
   display: flex;
@@ -513,57 +510,55 @@
 .ripple-back-button,
 .ripple-continue-button {
   min-height: 44px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-
   padding: 9px 14px;
-
-  border: 1px solid rgba(164, 184, 194, 0.16);
-  border-radius: 6px;
-
+  border: 1px solid rgba(164, 184, 194, 0.2);
+  border-radius: 5px;
   font-size: 12px;
   font-weight: 600;
-
   transition:
-    background 180ms ease,
-    border-color 180ms ease;
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 100ms ease-out;
 }
 
 .ripple-back-button {
-  color: var(--muted);
-  background: transparent;
+  color: var(--text-secondary, #AAB6BC);
+  background: rgba(255, 255, 255, 0.018);
 }
 
 .ripple-back-button:hover {
-  color: var(--text);
-
-  border-color: rgba(168, 202, 212, 0.3);
-  background: rgba(168, 202, 212, 0.05);
+  color: var(--text-primary, #F1F5F6);
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.035);
 }
 
 .ripple-continue-button {
-  color: #0b1216;
-  border-color: var(--cyan);
-  background: var(--cyan);
+  color: #071014;
+  border-color: var(--cta-metallic, #DDE5E8);
+  background: var(--cta-metallic, #DDE5E8);
 }
 
 .ripple-continue-button:hover {
-  border-color: #c4dce3;
-  background: #c4dce3;
+  border-color: var(--cta-metallic-hover, #FFFFFF);
+  background: var(--cta-metallic-hover, #FFFFFF);
+}
+
+.ripple-back-button:active,
+.ripple-continue-button:active {
+  transform: scale(0.985);
 }
 
 .ripple-back-button:focus-visible,
 .ripple-continue-button:focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent-cyan, #00E5FF);
   outline-offset: 3px;
 }
 
-/* -----------------------------------------
-   RESPONSIVE
------------------------------------------ */
+/* RESPONSIVE */
 
 @media (max-width: 850px) {
   .ripple-context-grid {
@@ -626,5 +621,665 @@
 
   .ripple-findings-empty {
     padding: 23px 15px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple-area-card,
+  .ripple-back-button,
+  .ripple-continue-button {
+    transition: none !important;
+  }
+
+  .ripple-back-button:active,
+  .ripple-continue-button:active {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .ripple-context,
+  .ripple-area-card,
+  .ripple-limitations,
+  .ripple-status-banner {
+    background: #0C1114;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* FORESIGHTX — SUBTLE LIQUID GLASS */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .ripple-page .ripple-status-banner {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(110, 180, 190, 0.075),
+      rgba(255, 255, 255, 0.018) 55%,
+      rgba(0, 229, 255, 0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(var(--glass-blur))
+                  saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur))
+                          saturate(var(--glass-saturation));
+}
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-status-banner,
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  border-radius: 14px;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card {
+  border-radius: 12px;
+  transition: transform 220ms ease, border-color 220ms ease,
+              box-shadow 220ms ease;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.28);
+  box-shadow: var(--glass-shadow-floating);
+}
+
+.fx-dashboard-root .ripple-page .ripple-information-note {
+  background: linear-gradient(
+    110deg,
+    rgba(0, 229, 255, 0.075),
+    rgba(0, 229, 255, 0.015)
+  );
+  border: 1px solid rgba(0, 229, 255, 0.13);
+  backdrop-filter: blur(14px);
+}
+
+/* Plain text statuses — no pills */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+
+
+/* FORESIGHTX — SUBTLE LIQUID GLASS */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .ripple-page .ripple-status-banner {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(110, 180, 190, 0.075),
+      rgba(255, 255, 255, 0.018) 55%,
+      rgba(0, 229, 255, 0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(var(--glass-blur))
+                  saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur))
+                          saturate(var(--glass-saturation));
+}
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-status-banner,
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  border-radius: 14px;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card {
+  border-radius: 12px;
+  transition: transform 220ms ease, border-color 220ms ease,
+              box-shadow 220ms ease;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.28);
+  box-shadow: var(--glass-shadow-floating);
+}
+
+.fx-dashboard-root .ripple-page .ripple-information-note {
+  background: linear-gradient(
+    110deg,
+    rgba(0, 229, 255, 0.075),
+    rgba(0, 229, 255, 0.015)
+  );
+  border: 1px solid rgba(0, 229, 255, 0.13);
+  backdrop-filter: blur(14px);
+}
+
+/* Plain text statuses — no pills */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+
+
+/* =========================================
+   FORESIGHTX — DESIGN SIMPLIFICATION
+   Remove decorative clutter
+========================================= */
+
+.fx-dashboard-root .ripple-page::before,
+.fx-dashboard-root .ripple-page::after,
+.fx-dashboard-root .passport-page::before,
+.fx-dashboard-root .passport-page::after {
+  content: none !important;
+  animation: none !important;
+}
+
+/* Quiet glass surfaces */
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-summary-card,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-review-list {
+  background: rgba(10, 20, 32, 0.34) !important;
+  border: 1px solid rgba(180, 210, 220, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+}
+
+/* Remove decorative icon containers */
+.fx-dashboard-root .ripple-section-heading > svg,
+.fx-dashboard-root .passport-section-heading > svg {
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  filter: none;
+}
+
+/* Remove unnecessary glowing dots */
+.fx-dashboard-root .ripple-page .ripple-demo-badge::before,
+.fx-dashboard-root .ripple-page .ripple-status-tag::before,
+.fx-dashboard-root .ripple-page .ripple-area-state::before,
+.fx-dashboard-root .passport-page .passport-demo-badge::before,
+.fx-dashboard-root .passport-page .passport-status-tag::before,
+.fx-dashboard-root .passport-page .passport-agent-status::before,
+.fx-dashboard-root .passport-page .passport-evidence-status::before {
+  display: none !important;
+}
+
+/* Clean, unboxed status typography */
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  letter-spacing: 0.035em;
+}
+
+/* Remove excessive typography effects */
+.fx-dashboard-root .ripple-intro h2,
+.fx-dashboard-root .passport-intro h2 {
+  text-shadow: none;
+  letter-spacing: -0.02em;
+}
+
+.fx-dashboard-root .ripple-section-heading > svg,
+.fx-dashboard-root .passport-section-heading > svg {
+  filter: none;
+}
+
+/* Simplify status panels */
+.fx-dashboard-root .ripple-status-banner,
+.fx-dashboard-root .passport-status-banner,
+.fx-dashboard-root .passport-review-banner {
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* No floating cards */
+.fx-dashboard-root .ripple-area-card,
+.fx-dashboard-root .passport-summary-card {
+  transition: border-color 180ms ease,
+              background 180ms ease;
+}
+
+.fx-dashboard-root .ripple-area-card:hover,
+.fx-dashboard-root .passport-summary-card:hover {
+  transform: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+  border-color: rgba(180, 210, 220, 0.22);
+}
+
+/* Remove decorative table hover effects */
+.fx-dashboard-root .passport-agent-row,
+.fx-dashboard-root .passport-evidence-table tbody tr {
+  transition: none;
+}
+
+.fx-dashboard-root .passport-agent-row:hover,
+.fx-dashboard-root .passport-evidence-table tbody tr:hover {
+  background: transparent;
+}
+
+/* Keep reduced-motion behaviour */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page *,
+  .fx-dashboard-root .passport-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* =========================================
+   FORESIGHTX — CHARCOAL LIQUID GLASS
+   Refined typography and transparent surfaces
+========================================= */
+
+/* PAGE TYPOGRAPHY */
+
+.fx-dashboard-root .ripple-page,
+.fx-dashboard-root .passport-page {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+
+  --glass-bg: rgba(25, 31, 36, 0.42);
+  --glass-bg-raised: rgba(32, 39, 44, 0.53);
+  --glass-border: rgba(180, 202, 210, 0.13);
+  --glass-hairline: rgba(180, 202, 210, 0.085);
+  --glass-blur: 24px;
+  --glass-saturation: 125%;
+
+  --glass-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.045),
+    0 16px 38px rgba(0,0,0,0.23);
+}
+
+/* Display headings */
+
+.fx-dashboard-root .ripple-intro h2,
+.fx-dashboard-root .passport-intro h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+/* Section headings */
+
+.fx-dashboard-root .ripple-section-heading h3,
+.fx-dashboard-root .passport-section-heading h3 {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+/* Body text */
+
+.fx-dashboard-root .ripple-page p,
+.fx-dashboard-root .passport-page p {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+/* Compact labels */
+
+.fx-dashboard-root .ripple-kicker,
+.fx-dashboard-root .passport-kicker,
+.fx-dashboard-root .ripple-context-item > span,
+.fx-dashboard-root .passport-context-item > span {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+}
+
+/* CHARCOAL GLASS — MAIN SURFACES */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-review-list {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.008) 55%,
+      rgba(120,160,175,0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(24px) saturate(125%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+}
+
+/* LIGHTER SECONDARY GLASS */
+
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .passport-page .passport-summary-card {
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255,255,255,0.055),
+      rgba(255,255,255,0.008)
+    ),
+    rgba(28,34,39,0.34);
+
+  border: 1px solid rgba(180,202,210,0.12);
+  border-radius: 12px;
+
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 12px 30px rgba(0,0,0,0.17);
+}
+
+/* STATUS SURFACES */
+
+.fx-dashboard-root .ripple-page .ripple-status-banner,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner {
+  background:
+    linear-gradient(
+      120deg,
+      rgba(216,183,126,0.085),
+      rgba(25,31,36,0.38)
+    );
+
+  border: 1px solid rgba(216,183,126,0.19);
+  border-radius: 14px;
+
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+
+  box-shadow: var(--glass-shadow);
+}
+
+/* FINDINGS AND INTEGRITY */
+
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  background: rgba(25,31,36,0.32);
+  border-color: rgba(216,183,126,0.18);
+  border-radius: 14px;
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.fx-dashboard-root .ripple-page .ripple-information-note,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  background: rgba(35,48,54,0.32);
+  border-color: rgba(140,190,200,0.13);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* REMOVE ALL STATUS PILLS AND DECORATIVE DOTS */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  display: inline;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+}
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-evidence-status.available {
+  color: var(--accent);
+}
+
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status.unavailable {
+  color: var(--warn);
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)
+:is(.ripple-demo-badge, .ripple-status-tag, .ripple-area-state,
+    .passport-demo-badge, .passport-status-tag,
+    .passport-agent-status, .passport-evidence-status)::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* NATURAL INTERACTIONS — NO FLOATING OR GLOWING */
+
+.fx-dashboard-root .ripple-area-card,
+.fx-dashboard-root .passport-summary-card {
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+@media (hover: hover) {
+  .fx-dashboard-root .ripple-area-card:hover,
+  .fx-dashboard-root .passport-summary-card:hover {
+    transform: none;
+    border-color: rgba(180,210,220,0.24);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 14px 32px rgba(0,0,0,0.21);
+  }
+}
+
+/* RESPECT REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page *,
+  .fx-dashboard-root .passport-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+
+/* =========================================
+   RIPPLEGUARD — REFINED DESIGN ENGINEERING
+========================================= */
+
+.fx-dashboard-root .ripple-page {
+  font-family: var(--font-ui, "Plus Jakarta Sans", sans-serif);
+
+  --glass-bg: rgba(35, 42, 47, 0.34);
+  --glass-bg-raised: rgba(45, 53, 58, 0.43);
+  --glass-border: rgba(180, 202, 210, 0.13);
+  --glass-blur: 22px;
+  --glass-saturation: 125%;
+}
+
+/* Consistent sans-serif typography */
+
+.fx-dashboard-root .ripple-page .ripple-intro h2,
+.fx-dashboard-root .ripple-page .ripple-section-heading h3,
+.fx-dashboard-root .ripple-page .ripple-area-card h4,
+.fx-dashboard-root .ripple-page .ripple-findings-empty h4 {
+  font-family: var(--font-ui, "Plus Jakarta Sans", sans-serif);
+}
+
+.fx-dashboard-root .ripple-page .ripple-intro h2 {
+  font-size: clamp(28px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+.fx-dashboard-root .ripple-page .ripple-section-heading h3 {
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card h4 {
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* Transparent charcoal glass */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .ripple-page .ripple-status-banner {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.035),
+    0 14px 34px rgba(0,0,0,0.18);
+}
+
+/* Cleaner assessment cards */
+
+.fx-dashboard-root .ripple-page .ripple-area-top {
+  margin-bottom: 9px;
+}
+
+.fx-dashboard-root .ripple-page .ripple-area-card > p {
+  margin-bottom: 0;
+  line-height: 1.65;
+}
+
+/* Compact empty state */
+
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  min-height: 180px;
+  padding: 24px;
+}
+
+/* Unboxed status typography */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge {
+  color: var(--accent);
+}
+
+.fx-dashboard-root .ripple-page .ripple-status-tag {
+  color: var(--warn);
+}
+
+/* Short, deliberate interactions */
+
+.fx-dashboard-root .ripple-page .ripple-back-button,
+.fx-dashboard-root .ripple-page .ripple-continue-button {
+  transition:
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    background 160ms ease-out,
+    border-color 160ms ease-out;
+}
+
+.fx-dashboard-root .ripple-page button:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-dashboard-root .ripple-page .ripple-area-card:hover {
+    border-color: rgba(180, 210, 220, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page button {
+    transition: none;
   }
 }

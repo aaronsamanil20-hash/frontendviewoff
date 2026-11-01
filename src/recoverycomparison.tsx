@@ -1,5 +1,4 @@
 import {
-  Activity,
   AlertTriangle,
   ArrowLeft,
   ArrowRight,
@@ -7,7 +6,6 @@ import {
   Database,
   IndianRupee,
   Info,
-  Package,
   Route,
   ShieldAlert,
   Truck,
@@ -57,8 +55,8 @@ const recoveryPlans = [
     icon: Truck,
     details: [
       { label: 'Alternate vehicle', value: 'ALT-101' },
-      { label: 'Availability', value: 'Available · Scenario input' },
-      { label: 'Eligibility', value: 'Eligible · Scenario input' },
+      { label: 'Availability', value: 'Available Â· Scenario input' },
+      { label: 'Eligibility', value: 'Eligible Â· Scenario input' },
       { label: 'Vehicle capacity', value: '250 units' },
     ],
   },
@@ -80,11 +78,11 @@ const recoveryPlans = [
       },
       {
         label: 'Available stock',
-        value: '300 units · Scenario input',
+        value: '300 units Â· Scenario input',
       },
       {
         label: 'Minimum reserve',
-        value: '50 units · Scenario input',
+        value: '50 units Â· Scenario input',
       },
     ],
   },
@@ -114,7 +112,7 @@ const pendingMetrics = [
 ]
 
 function formatCurrency(value: number) {
-  return `₹${value.toLocaleString('en-IN')}`
+  return `â‚¹${value.toLocaleString('en-IN')}`
 }
 
 function RecoveryComparison({
@@ -132,96 +130,90 @@ function RecoveryComparison({
 
       {/* PAGE INTRODUCTION */}
 
-      <section className="recovery-intro">
-        <div>
-          <span className="recovery-eyebrow">
-            RECOVERY WORKFLOW / STAGE 03
-          </span>
+      <section className="recovery-intro recovery-brief">
+  <div className="recovery-brief-main">
+    <div className="recovery-brief-topline">
 
-          <h2>Recovery plan comparison</h2>
 
-          <p>
-            Examine the three proposed recovery strategies
-            and their supplied operational inputs.
-          </p>
-        </div>
+      <div className="recovery-brief-source">
 
-        <span className="recovery-demo-badge">
-          SIMULATED SCENARIO
-        </span>
-      </section>
+        <span>SIMULATED SCENARIO</span>
+      </div>
+    </div>
+
+    <h2>Recovery plan evaluation</h2>
+
+    <p>
+      Compare three proposed recovery strategies against the active
+      scenario, supplied operational inputs, delivery commitments
+      and configured constraints.
+    </p>
+
+
+  </div>
+</section>
 
       {/* EVALUATION STATUS */}
 
-      <section className="recovery-status-banner">
-        <div className="recovery-status-icon">
-          <Activity size={20} />
-        </div>
+      <section className="recovery-status-banner recovery-command-panel">
+  <div className="recovery-command-status">
+    NOT EVALUATED
+  </div>
 
-        <div className="recovery-status-copy">
-          <span>SIMULATION STATUS</span>
+  <h3>Recovery options standing by.</h3>
 
-          <strong>Evaluation not yet performed</strong>
+  <p>
+    Three proposed strategies are staged against the active
+    disruption. Comparative assessment has not started.
+  </p>
 
-          <p>
-            The values below are scenario inputs. No recovery
-            plan has been evaluated or recommended.
-          </p>
-        </div>
+  <div className="recovery-command-footer">
+    <span>Awaiting evaluation</span>
 
-        <span className="recovery-status-tag">
-          NOT EVALUATED
-        </span>
-      </section>
+  </div>
+</section>
 
       {/* SHIPMENT CONTEXT */}
 
-      <section className="recovery-context">
-        <div className="recovery-section-heading">
-          <div>
-            <span className="recovery-kicker">
-              ACTIVE SCENARIO
-            </span>
-
-            <h3>Shipment overview</h3>
-          </div>
-
-          <Package size={19} />
+      <section
+        className="recovery-context recovery-scenario-panel recovery-shipment-command"
+        aria-label="Shipment overview"
+      >
+        <div className="recovery-shipment-identity">
+          <span>SHIPMENT OVERVIEW</span>
+          <h3>{shipment}</h3>
+          <p>{destination}</p>
         </div>
 
-        <div className="recovery-context-grid">
-          <div className="recovery-context-item">
-            <span>SHIPMENT REFERENCE</span>
-            <strong>{shipment}</strong>
+        <div className="recovery-confirmed-disruption">
+          <div className="recovery-disruption-status">
+            <span
+              className="recovery-disruption-led"
+              aria-hidden="true"
+            />
+            <span>CONFIRMED DISRUPTION</span>
           </div>
 
-          <div className="recovery-context-item">
-            <span>DESTINATION</span>
-            <strong>{destination}</strong>
-          </div>
+          <strong>{disruption}</strong>
+        </div>
 
-          <div className="recovery-context-item">
+        <div className="recovery-shipment-metrics">
+          <div className="recovery-shipment-metric">
             <span>QUANTITY</span>
             <strong>{quantity}</strong>
           </div>
 
-          <div className="recovery-context-item">
+          <div className="recovery-shipment-metric">
             <span>DELIVERY DEADLINE</span>
             <strong>{deadline}</strong>
           </div>
 
-          <div className="recovery-context-item">
+          <div className="recovery-shipment-metric">
             <span>TEMPERATURE REQUIREMENT</span>
             <strong>{temperature}</strong>
           </div>
-
-          <div className="recovery-context-item">
-            <span>ACTIVE DISRUPTION</span>
-            <strong>{disruption}</strong>
-          </div>
         </div>
       </section>
-
       {/* RECOVERY PLAN CARDS */}
 
       <section className="recovery-plans-section">
@@ -238,9 +230,7 @@ function RecoveryComparison({
             </p>
           </div>
 
-          <span className="recovery-plan-count">
-            03 PLANS
-          </span>
+
         </div>
 
         <div className="recovery-plan-grid">
@@ -268,10 +258,7 @@ function RecoveryComparison({
                   {plan.description}
                 </p>
 
-                <div className="recovery-plan-strategy">
-                  <span>STRATEGY</span>
-                  <code>{plan.strategy}</code>
-                </div>
+
 
                 <div className="recovery-input-heading">
                   SUPPLIED INPUTS
@@ -315,9 +302,8 @@ function RecoveryComparison({
                   ))}
                 </div>
 
-                <div className="recovery-plan-footer">
-                  <span className="recovery-pending-dot" />
-                  Evaluation pending
+                <div className="recovery-plan-footer recovery-plan-awaiting">
+                  <span>Awaiting assessment</span>
                 </div>
               </article>
             )
@@ -325,26 +311,27 @@ function RecoveryComparison({
         </div>
       </section>
 
-      {/* EVALUATION OUTPUT */}
+      {/* DECISION INTELLIGENCE */}
 
-      <section className="recovery-results-section">
-        <div className="recovery-section-heading">
+      <section className="recovery-results-section recovery-intelligence-panel">
+        <div className="recovery-section-heading recovery-intelligence-heading">
           <div>
             <span className="recovery-kicker">
-              EVALUATION OUTPUT
+              DECISION INTELLIGENCE
             </span>
 
-            <h3>Decision-engine assessment</h3>
+            <h3>Comparative assessment</h3>
 
             <p>
-              These results require an actual backend evaluation.
+              Review the evaluation status of each recovery strategy
+              across feasibility, delivery, risk and compliance.
             </p>
           </div>
 
           <Database size={19} />
         </div>
 
-        <div className="recovery-results-table-wrapper">
+        <div className="recovery-results-table-wrapper recovery-intelligence-table">
           <table className="recovery-results-table">
             <thead>
               <tr>
@@ -361,19 +348,19 @@ function RecoveryComparison({
                   <td>{metric.label}</td>
 
                   <td>
-                    <span className="recovery-unavailable">
+                    <span className="recovery-result-state">
                       {metric.value}
                     </span>
                   </td>
 
                   <td>
-                    <span className="recovery-unavailable">
+                    <span className="recovery-result-state">
                       {metric.value}
                     </span>
                   </td>
 
                   <td>
-                    <span className="recovery-unavailable">
+                    <span className="recovery-result-state">
                       {metric.value}
                     </span>
                   </td>
@@ -384,9 +371,9 @@ function RecoveryComparison({
         </div>
       </section>
 
-      {/* DECISION STATUS */}
+      {/* FINAL DECISION STATUS */}
 
-      <section className="recovery-decision-panel">
+      <section className="recovery-decision-panel recovery-decision-summary">
         <div className="recovery-decision-icon">
           <ShieldAlert size={21} />
         </div>
@@ -394,20 +381,23 @@ function RecoveryComparison({
         <div className="recovery-decision-copy">
           <span>DECISION STATUS</span>
 
-          <h3>No recommendation available yet</h3>
+          <h3>No recommendation generated</h3>
 
           <p>
-            No plan has been ranked or selected. The decision
-            engine must evaluate the supplied inputs first.
-            Human approval remains mandatory before a final decision.
+            Comparative assessment has not been completed.
+            No recovery strategy has been ranked or selected.
+            A human reviewer must approve any final decision.
           </p>
+
+          <div className="recovery-human-approval">
+            Human approval required before final action.
+          </div>
         </div>
 
         <span className="recovery-decision-tag">
           AWAITING EVALUATION
         </span>
       </section>
-
       {/* DATA LIMITATIONS */}
 
       <section className="recovery-information-panel">
@@ -432,7 +422,7 @@ function RecoveryComparison({
           </p>
 
           <p>
-            <strong>Cold chain:</strong> The 2–8°C requirement is
+            <strong>Cold chain:</strong> The 2â€“8Â°C requirement is
             known, but compliance has not been evaluated.
           </p>
 
@@ -474,7 +464,7 @@ function RecoveryComparison({
         <span>FORESIGHTX INTELLIGENCE SYSTEMS</span>
 
         <span>
-          PROTOTYPE · SIMULATED DATA · HUMAN APPROVAL REQUIRED
+          PROTOTYPE Â· SIMULATED DATA Â· HUMAN APPROVAL REQUIRED
         </span>
       </footer>
     </div>

@@ -799,3 +799,544 @@
     padding: 13px;
   }
 }
+
+/* FORESIGHTX — SUBTLE LIQUID GLASS */
+
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-summary-card,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-review-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(110, 180, 190, 0.075),
+      rgba(255, 255, 255, 0.018) 55%,
+      rgba(0, 229, 255, 0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(var(--glass-blur))
+                  saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur))
+                          saturate(var(--glass-saturation));
+}
+
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-review-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  border-radius: 14px;
+}
+
+.fx-dashboard-root .passport-page .passport-summary-card {
+  border-radius: 12px;
+  transition: transform 220ms ease, border-color 220ms ease,
+              box-shadow 220ms ease;
+}
+
+.fx-dashboard-root .passport-page .passport-summary-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.27);
+  box-shadow: var(--glass-shadow-floating);
+}
+
+.fx-dashboard-root .passport-page .passport-agent-row {
+  transition: background 180ms ease;
+}
+
+.fx-dashboard-root .passport-page .passport-agent-row:hover {
+  background: rgba(0, 229, 255, 0.035);
+}
+
+/* Plain text statuses — no pills */
+
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .passport-summary-card,
+  .passport-agent-row,
+  .ripple-area-card {
+    transition: none;
+  }
+
+  .passport-summary-card:hover,
+  .ripple-area-card:hover {
+    transform: none;
+  }
+}
+
+
+
+/* FORESIGHTX — SUBTLE LIQUID GLASS */
+
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-summary-card,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-review-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(110, 180, 190, 0.075),
+      rgba(255, 255, 255, 0.018) 55%,
+      rgba(0, 229, 255, 0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(var(--glass-blur))
+                  saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur))
+                          saturate(var(--glass-saturation));
+}
+
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-review-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  border-radius: 14px;
+}
+
+.fx-dashboard-root .passport-page .passport-summary-card {
+  border-radius: 12px;
+  transition: transform 220ms ease, border-color 220ms ease,
+              box-shadow 220ms ease;
+}
+
+.fx-dashboard-root .passport-page .passport-summary-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.27);
+  box-shadow: var(--glass-shadow-floating);
+}
+
+.fx-dashboard-root .passport-page .passport-agent-row {
+  transition: background 180ms ease;
+}
+
+.fx-dashboard-root .passport-page .passport-agent-row:hover {
+  background: rgba(0, 229, 255, 0.035);
+}
+
+/* Plain text statuses — no pills */
+
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .passport-summary-card,
+  .passport-agent-row,
+  .ripple-area-card {
+    transition: none;
+  }
+
+  .passport-summary-card:hover,
+  .ripple-area-card:hover {
+    transform: none;
+  }
+}
+
+
+
+/* =========================================
+   FORESIGHTX — DESIGN SIMPLIFICATION
+   Remove decorative clutter
+========================================= */
+
+.fx-dashboard-root .ripple-page::before,
+.fx-dashboard-root .ripple-page::after,
+.fx-dashboard-root .passport-page::before,
+.fx-dashboard-root .passport-page::after {
+  content: none !important;
+  animation: none !important;
+}
+
+/* Quiet glass surfaces */
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .ripple-page .ripple-findings-empty,
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-summary-card,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-review-list {
+  background: rgba(10, 20, 32, 0.34) !important;
+  border: 1px solid rgba(180, 210, 220, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+}
+
+/* Remove decorative icon containers */
+.fx-dashboard-root .ripple-section-heading > svg,
+.fx-dashboard-root .passport-section-heading > svg {
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  filter: none;
+}
+
+/* Remove unnecessary glowing dots */
+.fx-dashboard-root .ripple-page .ripple-demo-badge::before,
+.fx-dashboard-root .ripple-page .ripple-status-tag::before,
+.fx-dashboard-root .ripple-page .ripple-area-state::before,
+.fx-dashboard-root .passport-page .passport-demo-badge::before,
+.fx-dashboard-root .passport-page .passport-status-tag::before,
+.fx-dashboard-root .passport-page .passport-agent-status::before,
+.fx-dashboard-root .passport-page .passport-evidence-status::before {
+  display: none !important;
+}
+
+/* Clean, unboxed status typography */
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  letter-spacing: 0.035em;
+}
+
+/* Remove excessive typography effects */
+.fx-dashboard-root .ripple-intro h2,
+.fx-dashboard-root .passport-intro h2 {
+  text-shadow: none;
+  letter-spacing: -0.02em;
+}
+
+.fx-dashboard-root .ripple-section-heading > svg,
+.fx-dashboard-root .passport-section-heading > svg {
+  filter: none;
+}
+
+/* Simplify status panels */
+.fx-dashboard-root .ripple-status-banner,
+.fx-dashboard-root .passport-status-banner,
+.fx-dashboard-root .passport-review-banner {
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* No floating cards */
+.fx-dashboard-root .ripple-area-card,
+.fx-dashboard-root .passport-summary-card {
+  transition: border-color 180ms ease,
+              background 180ms ease;
+}
+
+.fx-dashboard-root .ripple-area-card:hover,
+.fx-dashboard-root .passport-summary-card:hover {
+  transform: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+  border-color: rgba(180, 210, 220, 0.22);
+}
+
+/* Remove decorative table hover effects */
+.fx-dashboard-root .passport-agent-row,
+.fx-dashboard-root .passport-evidence-table tbody tr {
+  transition: none;
+}
+
+.fx-dashboard-root .passport-agent-row:hover,
+.fx-dashboard-root .passport-evidence-table tbody tr:hover {
+  background: transparent;
+}
+
+/* Keep reduced-motion behaviour */
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page *,
+  .fx-dashboard-root .passport-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* =========================================
+   FORESIGHTX — CHARCOAL LIQUID GLASS
+   Refined typography and transparent surfaces
+========================================= */
+
+/* PAGE TYPOGRAPHY */
+
+.fx-dashboard-root .ripple-page,
+.fx-dashboard-root .passport-page {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+
+  --glass-bg: rgba(25, 31, 36, 0.42);
+  --glass-bg-raised: rgba(32, 39, 44, 0.53);
+  --glass-border: rgba(180, 202, 210, 0.13);
+  --glass-hairline: rgba(180, 202, 210, 0.085);
+  --glass-blur: 24px;
+  --glass-saturation: 125%;
+
+  --glass-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.045),
+    0 16px 38px rgba(0,0,0,0.23);
+}
+
+/* Display headings */
+
+.fx-dashboard-root .ripple-intro h2,
+.fx-dashboard-root .passport-intro h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+/* Section headings */
+
+.fx-dashboard-root .ripple-section-heading h3,
+.fx-dashboard-root .passport-section-heading h3 {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+/* Body text */
+
+.fx-dashboard-root .ripple-page p,
+.fx-dashboard-root .passport-page p {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+/* Compact labels */
+
+.fx-dashboard-root .ripple-kicker,
+.fx-dashboard-root .passport-kicker,
+.fx-dashboard-root .ripple-context-item > span,
+.fx-dashboard-root .passport-context-item > span {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+}
+
+/* CHARCOAL GLASS — MAIN SURFACES */
+
+.fx-dashboard-root .ripple-page .ripple-context,
+.fx-dashboard-root .ripple-page .ripple-limitations,
+.fx-dashboard-root .passport-page .passport-context,
+.fx-dashboard-root .passport-page .passport-record-list,
+.fx-dashboard-root .passport-page .passport-agent-list,
+.fx-dashboard-root .passport-page .passport-evidence-table-wrapper,
+.fx-dashboard-root .passport-page .passport-review-list {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.008) 55%,
+      rgba(120,160,175,0.025)
+    ),
+    var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: blur(24px) saturate(125%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+}
+
+/* LIGHTER SECONDARY GLASS */
+
+.fx-dashboard-root .ripple-page .ripple-area-card,
+.fx-dashboard-root .passport-page .passport-summary-card {
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255,255,255,0.055),
+      rgba(255,255,255,0.008)
+    ),
+    rgba(28,34,39,0.34);
+
+  border: 1px solid rgba(180,202,210,0.12);
+  border-radius: 12px;
+
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 12px 30px rgba(0,0,0,0.17);
+}
+
+/* STATUS SURFACES */
+
+.fx-dashboard-root .ripple-page .ripple-status-banner,
+.fx-dashboard-root .passport-page .passport-status-banner,
+.fx-dashboard-root .passport-page .passport-review-banner {
+  background:
+    linear-gradient(
+      120deg,
+      rgba(216,183,126,0.085),
+      rgba(25,31,36,0.38)
+    );
+
+  border: 1px solid rgba(216,183,126,0.19);
+  border-radius: 14px;
+
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+
+  box-shadow: var(--glass-shadow);
+}
+
+/* FINDINGS AND INTEGRITY */
+
+.fx-dashboard-root .ripple-page .ripple-findings-empty {
+  background: rgba(25,31,36,0.32);
+  border-color: rgba(216,183,126,0.18);
+  border-radius: 14px;
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.fx-dashboard-root .ripple-page .ripple-information-note,
+.fx-dashboard-root .passport-page .passport-integrity-note {
+  background: rgba(35,48,54,0.32);
+  border-color: rgba(140,190,200,0.13);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* REMOVE ALL STATUS PILLS AND DECORATIVE DOTS */
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status {
+  display: inline;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+}
+
+.fx-dashboard-root .ripple-page .ripple-demo-badge,
+.fx-dashboard-root .passport-page .passport-demo-badge,
+.fx-dashboard-root .passport-page .passport-evidence-status.available {
+  color: var(--accent);
+}
+
+.fx-dashboard-root .ripple-page .ripple-status-tag,
+.fx-dashboard-root .ripple-page .ripple-area-state,
+.fx-dashboard-root .passport-page .passport-status-tag,
+.fx-dashboard-root .passport-page .passport-agent-status,
+.fx-dashboard-root .passport-page .passport-evidence-status.unavailable {
+  color: var(--warn);
+}
+
+.fx-dashboard-root :is(.ripple-page, .passport-page)
+:is(.ripple-demo-badge, .ripple-status-tag, .ripple-area-state,
+    .passport-demo-badge, .passport-status-tag,
+    .passport-agent-status, .passport-evidence-status)::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* NATURAL INTERACTIONS — NO FLOATING OR GLOWING */
+
+.fx-dashboard-root .ripple-area-card,
+.fx-dashboard-root .passport-summary-card {
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+@media (hover: hover) {
+  .fx-dashboard-root .ripple-area-card:hover,
+  .fx-dashboard-root .passport-summary-card:hover {
+    transform: none;
+    border-color: rgba(180,210,220,0.24);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 14px 32px rgba(0,0,0,0.21);
+  }
+}
+
+/* RESPECT REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-dashboard-root .ripple-page *,
+  .fx-dashboard-root .passport-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

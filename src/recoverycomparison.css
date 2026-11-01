@@ -619,3 +619,1054 @@
     text-align: left;
   }
 }
+
+/* ==========================================================
+   FORESIGHTX — RECOVERY INTELLIGENCE PANELS
+   Matching the Disruption Details Obsidian theme.
+   Existing typography rules are preserved.
+   ========================================================== */
+
+/* Recovery briefing */
+
+.recovery-intro.recovery-brief {
+  display: block;
+  position: relative;
+  padding: 20px 22px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 180, 166, 0.25);
+  border-left: 2px solid rgba(120, 188, 174, 0.8);
+  border-radius: 12px;
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(67, 126, 113, 0.15),
+      transparent 55%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(20, 32, 33, 0.94),
+      rgba(11, 17, 19, 0.96)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 12px 30px rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.recovery-brief-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.recovery-brief-source {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #D2A064;
+}
+
+.recovery-brief-led {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #D2A064;
+  box-shadow: 0 0 8px rgba(210, 160, 100, 0.65);
+  animation: recovery-brief-status-flash 0.6s steps(1, end) infinite;
+}
+
+.recovery-intro.recovery-brief h2 {
+  margin-top: 14px;
+}
+
+.recovery-intro.recovery-brief p {
+  max-width: 800px;
+}
+
+.recovery-brief-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 17px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(145, 180, 169, 0.15);
+  color: rgba(169, 190, 181, 0.75);
+}
+
+/* Plan evaluation status */
+
+.recovery-status-banner.recovery-evaluation-state {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  border: 1px solid rgba(210, 160, 100, 0.25);
+  border-left: 2px solid rgba(210, 160, 100, 0.8);
+  border-radius: 11px;
+  background:
+    radial-gradient(
+      ellipse at 0% 50%,
+      rgba(150, 105, 59, 0.12),
+      transparent 48%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(25, 29, 29, 0.96),
+      rgba(12, 17, 18, 0.96)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 10px 28px rgba(0, 0, 0, 0.14);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.recovery-status-banner.recovery-evaluation-state .recovery-status-icon {
+  color: #D2A064;
+}
+
+.recovery-evaluation-indicator {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+  color: #D2A064;
+  white-space: nowrap;
+}
+
+.recovery-evaluation-led {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #D2A064;
+  box-shadow: 0 0 8px rgba(210, 160, 100, 0.7);
+  animation: recovery-brief-status-flash 0.6s steps(1, end) infinite;
+}
+
+/* Active shipment scenario */
+
+.recovery-context.recovery-scenario-panel {
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 180, 166, 0.22);
+  border-radius: 12px;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(57, 102, 94, 0.11),
+      transparent 48%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(19, 29, 31, 0.95),
+      rgba(10, 16, 18, 0.97)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 12px 30px rgba(0, 0, 0, 0.14);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.recovery-scenario-panel .recovery-section-heading {
+  align-items: center;
+}
+
+.recovery-scenario-source {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #82BCAE;
+}
+
+.recovery-scenario-source svg {
+  margin-left: 5px;
+  color: #82BCAE;
+}
+
+.recovery-scenario-led {
+  display: block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #82BCAE;
+  box-shadow: 0 0 8px rgba(130, 188, 174, 0.55);
+}
+
+.recovery-scenario-panel .recovery-context-grid {
+  border-top-color: rgba(145, 180, 169, 0.16);
+}
+
+.recovery-scenario-panel .recovery-context-item {
+  border-bottom: 1px solid rgba(145, 180, 169, 0.08);
+}
+
+.recovery-scenario-panel .recovery-context-item--disruption {
+  padding-left: 12px;
+  border-left: 2px solid rgba(120, 188, 174, 0.72);
+}
+
+.recovery-scenario-panel .recovery-context-item--disruption > span,
+.recovery-scenario-panel .recovery-context-item--disruption strong {
+  color: #82BCAE;
+}
+
+/* Shared status-light animation */
+
+@keyframes recovery-brief-status-flash {
+  0%, 49.9% {
+    opacity: 1;
+    box-shadow:
+      0 0 7px rgba(210, 160, 100, 0.9),
+      0 0 15px rgba(210, 160, 100, 0.4);
+  }
+
+  50%, 100% {
+    opacity: 0.12;
+    box-shadow: none;
+  }
+}
+
+/* Responsive and accessibility treatment */
+
+@media (max-width: 700px) {
+  .recovery-brief-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .recovery-evaluation-indicator {
+    margin-left: 54px;
+  }
+
+  .recovery-scenario-source {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recovery-brief-led,
+  .recovery-evaluation-led {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .recovery-intro.recovery-brief,
+  .recovery-status-banner.recovery-evaluation-state,
+  .recovery-context.recovery-scenario-panel {
+    background: #111B1C;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* FORESIGHTX — COOL CYAN RECOVERY ACCENT */
+
+.recovery-intro.recovery-brief {
+  border-color: rgba(105, 184, 199, 0.27);
+  border-left-color: #70BECE;
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(55, 125, 145, 0.16),
+      transparent 55%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(17, 29, 34, 0.96),
+      rgba(10, 16, 19, 0.97)
+    );
+}
+
+.recovery-brief-topline {
+  justify-content: flex-start;
+}
+
+.recovery-brief-source {
+  color: #83C8D4;
+}
+
+.recovery-brief-led {
+  background: #83C8D4;
+  box-shadow: 0 0 8px rgba(105, 184, 199, 0.7);
+}
+
+@keyframes recovery-brief-cyan-flash {
+  0%, 49.9% {
+    opacity: 1;
+    box-shadow:
+      0 0 7px rgba(105, 184, 199, 0.9),
+      0 0 15px rgba(105, 184, 199, 0.4);
+  }
+
+  50%, 100% {
+    opacity: 0.12;
+    box-shadow: none;
+  }
+}
+
+.recovery-brief-led {
+  animation: recovery-brief-cyan-flash 0.6s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recovery-brief-led {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+/* END FORESIGHTX — COOL CYAN RECOVERY ACCENT */
+
+/* FORESIGHTX — RECOVERY COMMAND PANEL */
+
+.recovery-status-banner.recovery-command-panel {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 25px 27px;
+  border: 1px solid rgba(105, 184, 199, 0.25);
+  border-left: 2px solid #70BECE;
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(55, 125, 145, 0.17),
+      transparent 58%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(17, 29, 34, 0.97),
+      rgba(9, 15, 18, 0.98)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 16px 38px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.recovery-command-status {
+  display: block;
+  margin-bottom: 13px;
+  color: #D2A064;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.recovery-status-banner.recovery-command-panel h3 {
+  margin: 0 0 9px;
+  color: #E8EFEC;
+}
+
+.recovery-status-banner.recovery-command-panel p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(205, 219, 213, 0.76);
+}
+
+.recovery-command-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 19px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(145, 180, 190, 0.17);
+  color: #83C8D4;
+  font-weight: 600;
+}
+
+
+
+@media (max-width: 600px) {
+  .recovery-status-banner.recovery-command-panel {
+    padding: 19px;
+  }
+}
+
+
+
+@media (prefers-reduced-transparency: reduce) {
+  .recovery-status-banner.recovery-command-panel {
+    background: #111B1F;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* FORESIGHTX — SHIPMENT COMMAND PANEL */
+
+.recovery-context.recovery-scenario-panel.recovery-shipment-command {
+  position: relative;
+  padding: 23px;
+  overflow: hidden;
+  border: 1px solid rgba(105, 184, 199, 0.23);
+  border-radius: 13px;
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(55, 125, 145, 0.13),
+      transparent 46%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(17, 28, 32, 0.97),
+      rgba(9, 15, 18, 0.98)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 15px 34px rgba(0, 0, 0, 0.17);
+  -webkit-backdrop-filter: blur(19px);
+  backdrop-filter: blur(19px);
+}
+
+/* Shipment identity */
+
+.recovery-shipment-identity {
+  padding: 2px 1px 19px;
+  border-bottom: 1px solid rgba(133, 178, 181, 0.16);
+}
+
+.recovery-shipment-identity > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #83C8D4;
+}
+
+.recovery-shipment-identity h3 {
+  margin: 0;
+  color: #EDF2EF;
+}
+
+.recovery-shipment-identity p {
+  margin: 6px 0 0;
+  color: rgba(196, 213, 210, 0.76);
+}
+
+/* Confirmed active disruption */
+
+.recovery-confirmed-disruption {
+  margin-top: 17px;
+  padding: 15px 17px;
+  border: 1px solid rgba(190, 99, 94, 0.27);
+  border-left: 2px solid #D77B78;
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(65, 31, 32, 0.55),
+      rgba(31, 20, 22, 0.72)
+    );
+}
+
+.recovery-disruption-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #E18A84;
+}
+
+.recovery-disruption-led {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #D77B78;
+  box-shadow: 0 0 8px rgba(215, 123, 120, 0.75);
+  animation: recovery-disruption-flash 0.6s steps(1, end) infinite;
+}
+
+.recovery-confirmed-disruption > strong {
+  display: block;
+  margin-top: 9px;
+  color: #F0DEDC;
+}
+
+/* Critical delivery constraints */
+
+.recovery-shipment-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.recovery-shipment-metric {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgba(117, 157, 159, 0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(26, 40, 43, 0.78),
+      rgba(13, 21, 23, 0.86)
+    );
+}
+
+.recovery-shipment-metric > span {
+  display: block;
+  color: #91B5B3;
+}
+
+.recovery-shipment-metric > strong {
+  display: block;
+  margin-top: 9px;
+  color: #E5EEEA;
+  overflow-wrap: anywhere;
+}
+
+/* Single meaningful status light */
+
+@keyframes recovery-disruption-flash {
+  0%, 49.9% {
+    opacity: 1;
+    box-shadow:
+      0 0 7px rgba(215, 123, 120, 0.9),
+      0 0 15px rgba(215, 123, 120, 0.4);
+  }
+
+  50%, 100% {
+    opacity: 0.12;
+    box-shadow: none;
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 700px) {
+  .recovery-context.recovery-scenario-panel.recovery-shipment-command {
+    padding: 17px;
+  }
+
+  .recovery-shipment-metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recovery-disruption-led {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .recovery-context.recovery-scenario-panel.recovery-shipment-command,
+  .recovery-shipment-metric {
+    background: #111B1F;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ==========================================================
+   FORESIGHTX — LIVING RECOVERY CARDS
+   Interactive glass reflections and restrained illumination.
+   ========================================================== */
+
+.recovery-plan-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: rgba(111, 161, 165, 0.2);
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(54, 114, 123, 0.10),
+      transparent 52%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(22, 34, 37, 0.96),
+      rgba(11, 18, 21, 0.98)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 10px 26px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background 260ms ease;
+}
+
+/* Moving glass reflection */
+
+.recovery-plan-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -45%;
+  left: -75%;
+  width: 58%;
+  height: 190%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-180%) skewX(-22deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(145, 220, 219, 0.035),
+    rgba(173, 231, 226, 0.13),
+    rgba(145, 220, 219, 0.035),
+    transparent
+  );
+}
+
+.recovery-plan-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes recovery-card-reflection {
+  0% {
+    opacity: 0;
+    transform: translateX(-180%) skewX(-22deg);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(380%) skewX(-22deg);
+  }
+}
+
+/* Card hover response */
+
+@media (hover: hover) and (pointer: fine) {
+  .recovery-plan-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(111, 195, 199, 0.48);
+    background:
+      radial-gradient(
+        ellipse at 0% 0%,
+        rgba(67, 143, 151, 0.16),
+        transparent 56%
+      ),
+      linear-gradient(
+        145deg,
+        rgba(25, 43, 46, 0.98),
+        rgba(12, 20, 23, 0.99)
+      );
+    box-shadow:
+      inset 0 1px 0 rgba(181, 231, 222, 0.08),
+      0 18px 38px rgba(0, 0, 0, 0.24),
+      0 0 22px rgba(77, 157, 159, 0.08);
+  }
+
+  .recovery-plan-card:hover::before {
+    animation: recovery-card-reflection 1.05s ease-out;
+  }
+
+  .recovery-plan-card:hover .recovery-plan-icon {
+    transform: translateY(-2px);
+    border-color: rgba(121, 199, 197, 0.4);
+    background: rgba(84, 151, 148, 0.16);
+    box-shadow: 0 0 16px rgba(80, 162, 160, 0.13);
+  }
+}
+
+/* Keyboard and touch interaction */
+
+.recovery-plan-card:focus-within {
+  border-color: rgba(111, 195, 199, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(181, 231, 222, 0.08),
+    0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.recovery-plan-card:active {
+  transform: translateY(-1px);
+}
+
+/* Existing plan icon */
+
+.recovery-plan-icon {
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    background 240ms ease,
+    box-shadow 240ms ease;
+}
+
+/* Supplied operational metrics */
+
+.recovery-input-metrics {
+  gap: 8px;
+}
+
+.recovery-input-metrics > div {
+  padding: 9px 10px;
+  border: 1px solid rgba(119, 159, 162, 0.11);
+  border-radius: 7px;
+  background: linear-gradient(
+    110deg,
+    rgba(65, 111, 113, 0.075),
+    rgba(255, 255, 255, 0.012)
+  );
+  transition:
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.recovery-input-metrics svg {
+  color: #83C8D4;
+  transition: color 220ms ease;
+}
+
+.recovery-input-metrics strong {
+  color: #E4EFEB;
+  font-variant-numeric: tabular-nums;
+}
+
+.recovery-input-metrics > div:nth-child(3) strong {
+  color: #D2A064;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .recovery-plan-card:hover .recovery-input-metrics > div {
+    border-color: rgba(116, 187, 187, 0.23);
+    background: linear-gradient(
+      110deg,
+      rgba(65, 126, 129, 0.13),
+      rgba(255, 255, 255, 0.025)
+    );
+  }
+}
+
+/* Operational details */
+
+.recovery-plan-details {
+  border-top-color: rgba(125, 164, 163, 0.17);
+}
+
+.recovery-detail-row {
+  border-bottom-color: rgba(125, 164, 163, 0.10);
+}
+
+.recovery-detail-row strong {
+  color: #DCE7E2;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .recovery-plan-card,
+  .recovery-plan-icon,
+  .recovery-input-metrics > div,
+  .recovery-input-metrics svg {
+    transition: none !important;
+  }
+
+  .recovery-plan-card::before {
+    animation: none !important;
+  }
+
+  .recovery-plan-card:active {
+    transform: none;
+  }
+}
+
+/* END FORESIGHTX — LIVING RECOVERY CARDS */
+
+/* FORESIGHTX — AWAITING ASSESSMENT */
+
+.recovery-plan-footer.recovery-plan-awaiting {
+  position: relative;
+  overflow: hidden;
+  color: #D2A064;
+  padding-bottom: 12px;
+}
+
+.recovery-plan-footer.recovery-plan-awaiting > span {
+  position: relative;
+  z-index: 1;
+}
+
+.recovery-plan-footer.recovery-plan-awaiting::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 34%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(210, 160, 100, 0.9),
+    transparent
+  );
+  opacity: 0.85;
+  pointer-events: none;
+  animation: recovery-awaiting-sweep 2.8s ease-in-out infinite;
+}
+
+.recovery-plan-card:nth-child(2)
+.recovery-plan-awaiting::after {
+  animation-delay: 0.4s;
+}
+
+.recovery-plan-card:nth-child(3)
+.recovery-plan-awaiting::after {
+  animation-delay: 0.8s;
+}
+
+@keyframes recovery-awaiting-sweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+
+  18%, 78% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateX(380%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recovery-plan-footer.recovery-plan-awaiting::after {
+    animation: none !important;
+    opacity: 0.5;
+    transform: none;
+  }
+}
+
+/* ==========================================================
+   FORESIGHTX — DECISION INTELLIGENCE SURFACE
+   ========================================================== */
+
+/* Assessment panel */
+
+.recovery-results-section.recovery-intelligence-panel {
+  position: relative;
+  padding: 21px;
+  overflow: hidden;
+  border: 1px solid rgba(105, 184, 199, 0.22);
+  border-radius: 13px;
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(55, 125, 145, 0.12),
+      transparent 48%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(17, 28, 32, 0.96),
+      rgba(9, 15, 18, 0.98)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 13px 32px rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.recovery-intelligence-heading {
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.recovery-intelligence-heading .recovery-kicker {
+  color: #83C8D4;
+}
+
+.recovery-intelligence-heading h3 {
+  color: #E7EFEC;
+}
+
+.recovery-intelligence-heading p {
+  max-width: 680px;
+  color: rgba(194, 211, 207, 0.7);
+}
+
+.recovery-intelligence-heading > svg {
+  color: #83C8D4;
+}
+
+/* Comparison matrix */
+
+.recovery-results-table-wrapper.recovery-intelligence-table {
+  overflow-x: auto;
+  border: 1px solid rgba(117, 164, 169, 0.18);
+  border-radius: 9px;
+  background: rgba(9, 16, 19, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.recovery-intelligence-table .recovery-results-table {
+  min-width: 610px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.recovery-intelligence-table .recovery-results-table th {
+  padding: 14px 15px;
+  color: #83C8D4;
+  background: rgba(57, 111, 120, 0.12);
+  border-bottom: 1px solid rgba(117, 164, 169, 0.19);
+}
+
+.recovery-intelligence-table .recovery-results-table th:first-child {
+  color: #A8BBB5;
+}
+
+.recovery-intelligence-table .recovery-results-table td {
+  padding: 15px;
+  border-top: 1px solid rgba(143, 174, 169, 0.09);
+  color: rgba(202, 216, 210, 0.75);
+  background: transparent;
+  transition: background 180ms ease;
+}
+
+.recovery-intelligence-table .recovery-results-table tbody tr:first-child td {
+  border-top: 0;
+}
+
+.recovery-intelligence-table .recovery-results-table td:first-child {
+  color: #E1E9E5;
+}
+
+/* Status text without pills */
+
+.recovery-intelligence-table .recovery-result-state {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #D2A064;
+  white-space: nowrap;
+}
+
+/* Quiet row interaction */
+
+.recovery-intelligence-table .recovery-results-table tbody tr {
+  transition: background 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .recovery-intelligence-table .recovery-results-table tbody tr:hover {
+    background: rgba(76, 135, 139, 0.075);
+  }
+
+  .recovery-intelligence-table .recovery-results-table tbody tr:hover td {
+    background: rgba(76, 135, 139, 0.035);
+  }
+}
+
+/* Final decision surface */
+
+.recovery-decision-panel.recovery-decision-summary {
+  position: relative;
+  align-items: center;
+  padding: 21px;
+  overflow: hidden;
+  border: 1px solid rgba(105, 184, 199, 0.23);
+  border-left: 2px solid #70BECE;
+  border-radius: 12px;
+  background:
+    radial-gradient(
+      ellipse at 0% 50%,
+      rgba(55, 125, 145, 0.14),
+      transparent 55%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(18, 29, 33, 0.96),
+      rgba(10, 16, 19, 0.98)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 13px 32px rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.recovery-decision-summary .recovery-decision-icon {
+  color: #83C8D4;
+}
+
+.recovery-decision-summary .recovery-decision-copy > span {
+  color: #D2A064;
+}
+
+.recovery-decision-summary .recovery-decision-copy h3 {
+  color: #E8EFEC;
+}
+
+.recovery-decision-summary .recovery-decision-copy p {
+  color: rgba(199, 213, 207, 0.72);
+}
+
+.recovery-human-approval {
+  margin-top: 13px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(123, 177, 177, 0.16);
+  color: #83C8D4;
+}
+
+/* Plain-text decision state, not a pill */
+
+.recovery-decision-summary .recovery-decision-tag {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 0 0 0 14px;
+  border: 0;
+  border-left: 1px solid rgba(210, 160, 100, 0.4);
+  border-radius: 0;
+  background: none;
+  color: #D2A064;
+  white-space: nowrap;
+}
+
+/* Responsive layout */
+
+@media (max-width: 700px) {
+  .recovery-results-section.recovery-intelligence-panel {
+    padding: 15px;
+  }
+
+  .recovery-decision-panel.recovery-decision-summary {
+    align-items: flex-start;
+  }
+
+  .recovery-decision-summary .recovery-decision-tag {
+    margin-left: 0;
+  }
+}
+
+/* Reduced transparency support */
+
+@media (prefers-reduced-transparency: reduce) {
+  .recovery-results-section.recovery-intelligence-panel,
+  .recovery-results-table-wrapper.recovery-intelligence-table,
+  .recovery-decision-panel.recovery-decision-summary {
+    background: #111B1F;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* END FORESIGHTX — DECISION INTELLIGENCE SURFACE */

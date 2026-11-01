@@ -1,6 +1,5 @@
 import {
   Activity,
-  AlertTriangle,
   ArrowLeft,
   ArrowRight,
   Database,
@@ -31,7 +30,7 @@ const assessmentAreas = [
     id: 'network',
     title: 'Network dependencies',
     description:
-      'Assess other shipments, connected routes and delivery commitments that could be affected by a recovery plan.',
+      'Identify connected shipments, routes and delivery commitments that a recovery plan may affect.',
     detail: 'Downstream dependency findings',
     icon: GitBranch,
   },
@@ -39,7 +38,7 @@ const assessmentAreas = [
     id: 'inventory',
     title: 'Inventory continuity',
     description:
-      'Assess warehouse stock, reserve thresholds and possible effects on inventory allocated to other requirements.',
+      'Review warehouse availability, reserve thresholds and stock allocated to other requirements.',
     detail: 'Inventory exposure findings',
     icon: Warehouse,
   },
@@ -47,7 +46,7 @@ const assessmentAreas = [
     id: 'cold-chain',
     title: 'Cold-chain continuity',
     description:
-      'Assess temperature-controlled handling continuity and any available evidence of temperature exposure.',
+      'Review refrigerated handling continuity and available temperature-exposure evidence.',
     detail: 'Temperature compliance findings',
     icon: Thermometer,
   },
@@ -55,7 +54,7 @@ const assessmentAreas = [
     id: 'delivery',
     title: 'Delivery commitments',
     description:
-      'Assess potential effects on delivery windows and other service-level commitments.',
+      'Identify potential effects on delivery windows and service-level commitments.',
     detail: 'Delivery impact findings',
     icon: Truck,
   },
@@ -67,20 +66,12 @@ const dataLimitations = [
     value: 'Supplied demonstration inputs',
   },
   {
-    label: 'Downstream dependencies',
-    value: 'Not returned',
+    label: 'Downstream findings and affected entities',
+    value: 'Not retrieved',
   },
   {
     label: 'Risk severity',
     value: 'Unknown',
-  },
-  {
-    label: 'Affected entities',
-    value: 'Not identified',
-  },
-  {
-    label: 'Impact calculation',
-    value: 'Not performed',
   },
   {
     label: 'Live operational feeds',
@@ -105,15 +96,10 @@ function RippleGuard({
       <section className="ripple-intro">
         <div>
           <span className="ripple-eyebrow">
-            RISK INTELLIGENCE / STAGE 04
+            RISK INTELLIGENCE
           </span>
 
-          <h2>Downstream impact assessment</h2>
-
-          <p>
-            Examine potential secondary effects and dependencies
-            associated with the pharmaceutical recovery scenario.
-          </p>
+          <h2>RippleGuard</h2>
         </div>
 
         <span className="ripple-demo-badge">
@@ -139,8 +125,7 @@ function RippleGuard({
           </strong>
 
           <p>
-            No downstream assessment results are currently available.
-            A missing assessment does not mean that no secondary risk exists.
+            No downstream assessment has been performed for this scenario.
           </p>
         </div>
 
@@ -222,28 +207,15 @@ function RippleGuard({
             const Icon = area.icon
 
             return (
-              <article
-                className="ripple-area-card"
-                key={area.id}
-              >
+              <article className="ripple-area-card" key={area.id}>
                 <div className="ripple-area-top">
                   <div className="ripple-area-icon">
                     <Icon size={19} />
                   </div>
-
-                  <span className="ripple-area-state">
-                    NOT ASSESSED
-                  </span>
                 </div>
 
                 <h4>{area.title}</h4>
-
                 <p>{area.description}</p>
-
-                <div className="ripple-area-footer">
-                  <span>{area.detail}</span>
-                  <strong>Unavailable</strong>
-                </div>
               </article>
             )
           })}
@@ -271,30 +243,23 @@ function RippleGuard({
         </div>
 
         <div
-          className="ripple-findings-empty"
-          role="status"
-          aria-live="polite"
-        >
-          <div className="ripple-findings-icon">
-            <AlertTriangle size={22} />
-          </div>
+  className="ripple-findings-empty"
+  role="status"
+  aria-live="polite"
+>
+  <span className="ripple-findings-label">
+    ASSESSMENT UNAVAILABLE
+  </span>
 
-          <span className="ripple-findings-label">
-            NO EVALUATED FINDINGS
-          </span>
+  <h4>Downstream impact remains unknown</h4>
 
-          <h4>No downstream findings available</h4>
+  <p>
+    No assessment has been performed for this scenario.
+    This does not establish that secondary risks are absent.
+  </p>
 
-          <p>
-            RippleGuard has not returned an assessment for this scenario.
-            Affected shipments, severity levels, risk scores and
-            explanations cannot be displayed yet.
-          </p>
-
-          <strong>
-            Current risk status: Unknown
-          </strong>
-        </div>
+  <strong>Risk status: Unknown</strong>
+</div>
       </section>
 
       {/* DATA LIMITATIONS */}
@@ -327,13 +292,7 @@ function RippleGuard({
         <div className="ripple-information-note">
           <Info size={17} />
 
-          <p>
-            The current page displays scenario context and assessment
-            requirements only. It does not confirm the absence of
-            secondary effects or represent a completed AI analysis.
-            Any future findings must be supported by actual backend
-            evaluation results.
-          </p>
+          <p>This page shows supplied demonstration inputs only. No downstream assessment or live operational evidence has been retrieved. Unknown does not mean that risk is absent.</p>
         </div>
       </section>
 
@@ -363,7 +322,7 @@ function RippleGuard({
         <span>FORESIGHTX INTELLIGENCE SYSTEMS</span>
 
         <span>
-          PROTOTYPE · SIMULATED DATA · HUMAN APPROVAL REQUIRED
+          PROTOTYPE Ãƒâ€šÃ‚Â· SIMULATED DATA Ãƒâ€šÃ‚Â· HUMAN APPROVAL REQUIRED
         </span>
       </footer>
     </div>

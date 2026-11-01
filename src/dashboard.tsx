@@ -1,4 +1,4 @@
-﻿import { useState, type FormEvent, type ReactNode } from 'react'
+import { useState, type FormEvent, type ReactNode } from 'react'
 import {
   ClipboardCheck,
   GitBranch,
@@ -46,10 +46,12 @@ const scenario = {
   disruption: 'NH-44 road closure',
   destination: 'Hospital A, Bengaluru',
   quantity: '200 medicine units',
-  temperature: '2–8°C',
+  temperature: '2â€“8Â°C',
   deadline: '2:00 PM',
   eventTime: '10:15 AM',
   dataSource: 'Simulated data',
+  disruptionStatus: 'active',
+  shipmentCondition: 'at-risk',
 }
 
 const workflowSteps = [
@@ -253,9 +255,6 @@ function ProfileScreen({
           <section className="fx-profile-column">
             <div className="fx-profile-section-heading">
               <h2>Personal details</h2>
-              <p>
-                Information associated with your demonstration account.
-              </p>
             </div>
 
             <div className="fx-profile-fields">
@@ -306,9 +305,6 @@ function ProfileScreen({
           <section className="fx-profile-column">
             <div className="fx-profile-section-heading">
               <h2>Workspace and preferences</h2>
-              <p>
-                Access information and settings for this local profile.
-              </p>
             </div>
 
             <div className="fx-profile-ledger">
@@ -336,9 +332,6 @@ function ProfileScreen({
                   <label htmlFor="profile-time-zone">
                     Time zone
                   </label>
-                  <p>
-                    Used for displaying times in this workspace.
-                  </p>
                 </div>
 
                 <select
@@ -425,7 +418,7 @@ function ProfileScreen({
                 className="fx-primary-button"
               >
                 Save changes
-                <span aria-hidden="true">→</span>
+
               </button>
             </>
           ) : (
@@ -435,7 +428,7 @@ function ProfileScreen({
               onClick={beginEditing}
             >
               Edit profile
-              <span aria-hidden="true">→</span>
+
             </button>
           )}
         </div>
@@ -459,21 +452,29 @@ function ControlTower({
       value: '1',
       label: 'Active disruptions',
       detail: 'NH-44 road closure',
+      tone: 'critical',
+      stateLabel: 'ACTIVE',
     },
     {
       value: '1',
       label: 'Affected shipments',
       detail: 'TRK-104',
+      tone: 'warning',
+      stateLabel: 'AT RISK',
     },
     {
       value: '3',
       label: 'Recovery options',
       detail: 'Candidate strategies',
+      tone: 'active',
+      stateLabel: 'CANDIDATES',
     },
     {
       value: '0',
       label: 'Open evaluations',
       detail: 'None evaluated',
+      tone: 'muted',
+      stateLabel: 'NOT STARTED',
     },
   ]
 
@@ -505,6 +506,52 @@ function ControlTower({
     },
   ]
 
+  const operationalStatus = (() => {
+    if (
+      scenario.disruptionStatus === 'unknown' ||
+      scenario.shipmentCondition === 'unknown'
+    ) {
+      return {
+        tone: 'unknown' as const,
+        label: 'STATUS UNKNOWN',
+        detail: 'The available scenario data cannot confirm shipment health.',
+      }
+    }
+
+    if (scenario.shipmentCondition === 'at-risk') {
+      return {
+        tone: 'critical' as const,
+        label: 'AT RISK',
+        detail: `${scenario.disruption} is affecting shipment ${scenario.shipment}.`,
+      }
+    }
+
+    if (scenario.disruptionStatus === 'active') {
+      return {
+        tone: 'attention' as const,
+        label: 'ATTENTION REQUIRED',
+        detail: 'An active disruption remains recorded in the scenario.',
+      }
+    }
+
+    if (
+      scenario.disruptionStatus === 'resolved' &&
+      scenario.shipmentCondition === 'stable'
+    ) {
+      return {
+        tone: 'healthy' as const,
+        label: 'HEALTHY',
+        detail: 'The scenario records the disruption as resolved and the shipment as stable.',
+      }
+    }
+
+    return {
+      tone: 'unknown' as const,
+      label: 'STATUS UNKNOWN',
+      detail: 'The available scenario data cannot confirm shipment health.',
+    }
+  })()
+
   return (
     <section className="fx-control-tower">
       <header className="fx-page-heading">
@@ -513,11 +560,34 @@ function ControlTower({
 
           <h1>Control Tower</h1>
 
-          <p className="fx-finding">
-            One shipment is at risk, and no recovery plan has
-            been evaluated yet.
-          </p>
+
         </div>
+        <aside
+          className="fx-operational-status"
+          data-state={operationalStatus.tone}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span className="fx-operational-status__eyebrow">
+            OPERATIONAL STATUS
+          </span>
+
+          <div className="fx-operational-status__main">
+            <span
+              className="fx-operational-status__led"
+              aria-hidden="true"
+            />
+            <strong>{operationalStatus.label}</strong>
+          </div>
+
+          <p className="fx-operational-status__detail">
+            {operationalStatus.detail}
+          </p>
+
+          <span className="fx-operational-status__source">
+            AUTO-DERIVED Â· {scenario.dataSource}
+          </span>
+        </aside>
       </header>
 
       <section
@@ -527,8 +597,19 @@ function ControlTower({
         {situation.map((item) => (
           <div
             className="fx-situation-item"
+            data-tone={item.tone}
             key={item.label}
           >
+            <div className="fx-situation-status">
+              <span
+                className="fx-situation-led"
+                aria-hidden="true"
+              />
+              <span className="fx-situation-state">
+                {item.stateLabel}
+              </span>
+            </div>
+
             <strong className="fx-situation-value">
               {item.value}
             </strong>
@@ -548,50 +629,11 @@ function ControlTower({
         className="fx-brief-grid"
         aria-label="Current disruption brief"
       >
-        <article className="fx-brief-column">
-          <div className="fx-section-heading">
-            <h2>Affected shipment</h2>
-            <p>
-              Delivery details and handling requirements for the
-              affected medicine.
-            </p>
+        <article className="fx-brief-column" data-brief="disruption">
+          <div className="fx-brief-kicker" data-tone="critical">
+            <span className="fx-brief-led" aria-hidden="true" />
+            <span>ACTIVE DISRUPTION</span>
           </div>
-
-          <div className="fx-ledger">
-            <LedgerRow label="Shipment reference">
-              {scenario.shipment}
-            </LedgerRow>
-
-            <LedgerRow label="Destination">
-              {scenario.destination}
-            </LedgerRow>
-
-            <LedgerRow label="Cargo">
-              Temperature-sensitive IV medicine
-            </LedgerRow>
-
-            <LedgerRow label="Quantity">
-              {scenario.quantity}
-            </LedgerRow>
-
-            <LedgerRow label="Temperature range">
-              {scenario.temperature}
-            </LedgerRow>
-
-            <LedgerRow label="Delivery deadline">
-              {scenario.deadline}
-            </LedgerRow>
-
-            <LedgerRow label="Shipment condition">
-              <StateMark
-                state="at-risk"
-                label="At risk"
-              />
-            </LedgerRow>
-          </div>
-        </article>
-
-        <article className="fx-brief-column">
           <div className="fx-section-heading">
             <h2>Active disruption</h2>
             <p>
@@ -632,7 +674,73 @@ function ControlTower({
             </LedgerRow>
           </div>
         </article>
-      </section>
+
+        <article className="fx-brief-column" data-brief="shipment">
+          <div className="fx-brief-kicker" data-tone="warning">
+            <span className="fx-brief-led" aria-hidden="true" />
+            <span>AFFECTED SHIPMENT</span>
+          </div>
+          <div className="fx-section-heading">
+            <h2>Affected shipment</h2>
+            <p>
+              Delivery details and handling requirements for the
+              affected medicine.
+            </p>
+          </div>
+
+          <div className="fx-ledger">
+            <LedgerRow label="Shipment reference">
+              {scenario.shipment}
+            </LedgerRow>
+
+            <LedgerRow label="Destination">
+              {scenario.destination}
+            </LedgerRow>
+
+            <LedgerRow label="Cargo">
+              Temperature sensitive IV medicine
+            </LedgerRow>
+
+            <LedgerRow label="Quantity">
+              {scenario.quantity}
+            </LedgerRow>
+
+            <LedgerRow label="Temperature range">
+              {scenario.temperature}
+            </LedgerRow>
+
+            <LedgerRow label="Delivery deadline">
+              {scenario.deadline}
+            </LedgerRow>
+
+            <LedgerRow label="Shipment condition">
+              <StateMark
+                state="at-risk"
+                label="At risk"
+              />
+            </LedgerRow>
+          </div>
+        </article>
+
+        <div
+          className="fx-incident-link"
+          aria-label={`${scenario.disruption} affects shipment ${scenario.shipment} destined for ${scenario.destination}`}
+        >
+          <span className="fx-incident-link__caption">INCIDENT IMPACT PATH</span>
+          <div className="fx-incident-link__flow">
+            <span className="fx-incident-link__node fx-incident-link__node--event">
+              {scenario.disruption}
+            </span>
+            <span className="fx-incident-link__arrow" aria-hidden="true">?</span>
+            <span className="fx-incident-link__node fx-incident-link__node--shipment">
+              {scenario.shipment}
+            </span>
+            <span className="fx-incident-link__destination">
+              {scenario.destination}
+            </span>
+          </div>
+        </div>
+</section>
 
       <section className="fx-progress-grid">
         <article className="fx-progress-column">
@@ -715,6 +823,17 @@ function ControlTower({
         </article>
       </section>
 
+      <div className="fx-page-action">
+        <button
+          type="button"
+          className="fx-primary-button"
+          onClick={() => onNavigate('Disruption Details')}
+        >
+          Continue to Disruption Details
+          <span aria-hidden="true">?</span>
+        </button>
+      </div>
+
       <section className="fx-system-status">
         <div className="fx-section-heading">
           <h2>System status</h2>
@@ -741,16 +860,6 @@ function ControlTower({
         </div>
       </section>
 
-      <div className="fx-page-action">
-        <button
-          type="button"
-          className="fx-primary-button"
-          onClick={() => onNavigate('Disruption Details')}
-        >
-          Continue to Disruption Details
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
     </section>
   )
 }
@@ -984,7 +1093,7 @@ export default function Dashboard({
               aria-hidden="true"
             />
             <span>
-              Demonstration environment · Simulated data
+              Demonstration environment Â· Simulated data
             </span>
           </div>
         </header>
@@ -995,7 +1104,7 @@ export default function Dashboard({
           <footer className="fx-dashboard-footer">
             <span>FORESIGHTX Intelligence Systems</span>
             <span>
-              Prototype · Human approval required · Nothing is executed
+              Prototype Â· Human approval required Â· Nothing is executed
               automatically
             </span>
           </footer>

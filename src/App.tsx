@@ -7,13 +7,6 @@ type AuthMode = 'signin' | 'create'
 
 const PROFILE_STORAGE_KEY = 'foresightx.profile.v1'
 
-const workflowStages = [
-  'Control Tower',
-  'Disruption Details',
-  'Recovery Comparison',
-  'RippleGuard',
-  'Decision Passport',
-] as const
 
 function makeDemoProfile(email = 'demo@foresightx.local'): UserProfile {
   return {
@@ -192,7 +185,7 @@ function App() {
             aria-hidden="true"
           />
           <span>
-            Demonstration environment · Simulated data
+            Demonstration environment Â· Simulated data
           </span>
         </div>
       </header>
@@ -215,12 +208,6 @@ function App() {
                 ? 'Create your workspace profile.'
                 : 'Every decision is recorded.'}
             </h1>
-
-            <p className="quiet-auth__description">
-              {isCreatingAccount
-                ? 'Set up your local demonstration profile. You can update your details later.'
-                : 'Approval requires a named reviewer. Nothing is executed automatically.'}
-            </p>
           </div>
 
           <div
@@ -384,8 +371,7 @@ function App() {
               className="quiet-auth__submit"
               type="submit"
             >
-              {isCreatingAccount ? 'Create demo account' : 'Sign in'}
-              <span aria-hidden="true">→</span>
+              {isCreatingAccount ? 'Create account' : 'Sign in'}
             </button>
           </form>
 
@@ -426,46 +412,7 @@ function App() {
           </div>
         </div>
       </section>
-
-      <section
-        className="quiet-auth__trace"
-        aria-label="Five-stage workflow"
-      >
-        <ol className="quiet-auth__trace-list">
-          <li className="quiet-auth__trace-item quiet-auth__trace-item--current">
-            <span
-              className="quiet-auth__trace-node"
-              aria-hidden="true"
-            />
-            <span className="quiet-auth__trace-context">
-              You are here
-            </span>
-            <span className="quiet-auth__trace-label">
-              Account access
-            </span>
-          </li>
-
-          {workflowStages.map((stage, index) => (
-            <li
-              className="quiet-auth__trace-item"
-              key={stage}
-            >
-              <span
-                className="quiet-auth__trace-node"
-                aria-hidden="true"
-              />
-              <span className="quiet-auth__trace-number">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span className="quiet-auth__trace-label">
-                {stage}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <footer className="quiet-auth__footer">
+<footer className="quiet-auth__footer">
         <span>Environment: Demonstration</span>
         <span>Data: Simulated scenario</span>
         <span>Approval: Human review required</span>

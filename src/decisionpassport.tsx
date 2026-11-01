@@ -1,4 +1,4 @@
-import {
+﻿import {
   Activity,
   ArrowLeft,
   ArrowRight,
@@ -169,9 +169,6 @@ function DecisionPassport({
 
       <section className="passport-intro">
         <div>
-          <span className="passport-eyebrow">
-            DECISION TRACEABILITY / STAGE 05
-          </span>
 
           <h2>Decision Passport</h2>
 
@@ -518,7 +515,7 @@ function DecisionPassport({
         <span>FORESIGHTX INTELLIGENCE SYSTEMS</span>
 
         <span>
-          PROTOTYPE · SIMULATED DATA · HUMAN APPROVAL REQUIRED
+          PROTOTYPE Â· SIMULATED DATA Â· HUMAN APPROVAL REQUIRED
         </span>
       </footer>
     </div>

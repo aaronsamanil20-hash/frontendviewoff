@@ -441,3 +441,300 @@
     transition: none;
   }
 }
+/* PROFILE LIQUID GLASS REFINEMENT */
+
+.fx-profile-page {
+  --profile-panel-padding: clamp(1.1rem, 2vw, 1.65rem);
+  --profile-panel-border: rgba(150, 190, 200, 0.12);
+}
+
+.fx-profile-heading {
+  align-items: center;
+  margin-bottom: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+.fx-profile-heading h1 {
+  font-family: var(--font-ui);
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.fx-profile-finding {
+  max-width: 560px;
+  margin-top: 0.55rem;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.fx-profile-account-state {
+  padding-bottom: 0;
+}
+
+/* Plain status text: no pills or decorative indicators */
+
+.fx-profile-page .fx-state {
+  display: inline-flex;
+  gap: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.fx-profile-page .fx-state-mark {
+  display: none !important;
+}
+
+/* Two independent glass surfaces */
+
+.fx-profile-grid {
+  align-items: stretch;
+  column-gap: clamp(0.85rem, 1.5vw, 1.25rem);
+}
+
+.fx-profile-column {
+  min-width: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--profile-panel-padding);
+  border: 1px solid var(--profile-panel-border);
+  border-radius: var(--radius-panel, 16px);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.008) 46%
+    ),
+    rgba(7, 12, 16, 0.52);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  backdrop-filter: blur(20px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.fx-profile-column::before {
+  opacity: 0.28;
+}
+
+.fx-profile-column + .fx-profile-column {
+  padding: var(--profile-panel-padding);
+  border: 1px solid var(--profile-panel-border);
+}
+
+/* Section hierarchy */
+
+.fx-profile-section-heading {
+  margin-bottom: 1.15rem;
+}
+
+.fx-profile-section-heading h2 {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.fx-profile-section-heading p {
+  max-width: 420px;
+  margin-top: 0.4rem;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* Personal details */
+
+.fx-profile-field {
+  min-height: 62px;
+  grid-template-columns: minmax(100px, 0.68fr) minmax(0, 1.32fr);
+  gap: 1rem;
+}
+
+.fx-profile-field label {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.fx-profile-input {
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.fx-profile-input:not(:disabled) {
+  border-bottom-color: rgba(0, 229, 255, 0.22);
+}
+
+.fx-profile-input:not(:disabled):focus-visible {
+  background: rgba(0, 229, 255, 0.025);
+}
+
+/* Workspace information */
+
+.fx-profile-ledger {
+  border-top-color: var(--profile-panel-border);
+}
+
+.fx-profile-ledger > .fx-ledger-row {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--profile-panel-border);
+}
+
+.fx-profile-ledger .fx-ledger-label {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.fx-profile-ledger .fx-ledger-value {
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.fx-profile-preference {
+  min-height: 68px;
+  border-bottom-color: var(--profile-panel-border);
+}
+
+.fx-profile-preference label {
+  font-size: 11px;
+}
+
+.fx-profile-preference p {
+  max-width: 300px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.fx-profile-select {
+  font-size: 12px;
+}
+
+/* Actions and supporting text */
+
+.fx-profile-actions {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top-color: var(--profile-panel-border);
+}
+
+.fx-profile-footnote {
+  margin-top: 0.85rem;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.fx-profile-saved {
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .fx-profile-grid {
+    row-gap: 1rem;
+  }
+
+  .fx-profile-column + .fx-profile-column {
+    padding: var(--profile-panel-padding);
+    border: 1px solid var(--profile-panel-border);
+  }
+}
+
+@media (max-width: 600px) {
+  .fx-profile-heading {
+    gap: 0.8rem;
+  }
+
+  .fx-profile-column,
+  .fx-profile-column + .fx-profile-column {
+    padding: 1rem;
+  }
+
+  .fx-profile-field {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+    padding: 0.6rem 0;
+  }
+
+  .fx-profile-ledger > .fx-ledger-row {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .fx-profile-column {
+    background: rgba(7, 12, 16, 0.96);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* PROFILE SPACING REFINEMENT — NO HORIZONTAL RULES */
+
+/* Remove horizontal separators throughout the profile layout */
+.fx-profile-page .fx-profile-field,
+.fx-profile-page .fx-profile-field:first-child,
+.fx-profile-page .fx-profile-ledger,
+.fx-profile-page .fx-profile-ledger > .fx-ledger-row,
+.fx-profile-page .fx-profile-preference,
+.fx-profile-page .fx-profile-actions,
+.fx-profile-page .fx-profile-saved {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Give form fields and information rows breathing room */
+.fx-profile-page .fx-profile-field,
+.fx-profile-page .fx-profile-ledger > .fx-ledger-row,
+.fx-profile-page .fx-profile-preference {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* Clean input surfaces instead of broken-looking underlines */
+.fx-profile-page .fx-profile-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.fx-profile-page .fx-profile-input:not(:disabled) {
+  background: rgba(0, 229, 255, 0.045);
+}
+
+.fx-profile-page .fx-profile-input:focus-visible {
+  outline: 1px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Remove the timezone selector underline */
+.fx-profile-page .fx-profile-select {
+  border: 0 !important;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* Preserve the glass panels and existing vertical section separation */
+.fx-profile-page .fx-profile-column + .fx-profile-column {
+  border-top: 0 !important;
+}

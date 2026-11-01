@@ -1,4 +1,4 @@
-﻿/* FORESIGHTX — Quiet Ledger design tokens */
+/* FORESIGHTX — Quiet Ledger design tokens */
 
 :root {
   /* Foundations */
@@ -101,7 +101,7 @@
   --radius-md: 2px;
   --radius-lg: 2px;
   --radius-button: 6px;
-  --radius-panel: 0px;
+  --radius-panel: 14px;
   --radius-input: 6px;
 
   /* Approved spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 */
